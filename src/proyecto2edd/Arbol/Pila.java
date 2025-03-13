@@ -12,7 +12,11 @@ public class Pila {
     private Nodo pInicio;
     private int size;
 
-    /**
+    public Pila(Nodo pInicio, int size) {
+        this.pInicio = pInicio;
+        this.size = size;
+    }
+     /**
      * @return the pInicio
      */
     public Nodo getpInicio() {
@@ -38,6 +42,14 @@ public class Pila {
      */
     public void setSize(int size) {
         this.size = size;
+    }
+    
+    public boolean esVacio(){
+        return pInicio == null;
+    }
+    
+    public Object leerCabeza(){
+        return pInicio.getData();
     }
     
     

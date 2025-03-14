@@ -5,7 +5,7 @@ package EDD;
  * @author jmmor
  */
 public class NodoA {
-    private String data;
+    private Object data;
     private NodoA hijoIzq;
     private NodoA hijoDer;
 

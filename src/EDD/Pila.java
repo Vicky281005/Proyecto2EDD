@@ -4,31 +4,31 @@
  */
 package EDD;
 
-import EDD.Nodo;
+import EDD.NodoA;
 
 /**
  *
  * @author jmmor
  */
 public class Pila {
-    private Nodo pInicio;
+    private NodoA pInicio;
     private int size;
 
-    public Pila(Nodo pInicio, int size) {
+    public Pila(NodoA pInicio, int size) {
         this.pInicio = pInicio;
         this.size = size;
     }
      /**
      * @return the pInicio
      */
-    public Nodo getpInicio() {
+    public NodoA getpInicio() {
         return pInicio;
     }
 
     /**
      * @param pInicio the pInicio to set
      */
-    public void setpInicio(Nodo pInicio) {
+    public void setpInicio(NodoA pInicio) {
         this.pInicio = pInicio;
     }
 

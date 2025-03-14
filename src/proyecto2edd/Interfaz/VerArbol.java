@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package proyecto2edd.hashTable;
+package proyecto2edd.Interfaz;
 
 /**
  *
- * @author jmmor
+ * @author mishel
  */
-public class hashTable {
+public class VerArbol {
     
 }

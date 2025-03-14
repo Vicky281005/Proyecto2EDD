@@ -1,11 +1,11 @@
-package proyecto2edd.Arbol;
+package EDD;
 
 /**
  *
  * @author jmmor
  */
 public class Nodo {
-        private String data;
+    private String data;
     private Nodo hijoIzq;
     private Nodo hijoDer;
 

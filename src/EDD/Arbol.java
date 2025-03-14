@@ -1,5 +1,5 @@
 
-package proyecto2edd.Arbol;
+package EDD;
 
 /**
  *

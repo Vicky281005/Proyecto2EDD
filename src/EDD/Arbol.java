@@ -1,22 +1,22 @@
 
-package proyecto2edd.Arbol;
+package EDD;
 
 /**
  *
  * @author jmmor
  */
 public class Arbol {
-    private Nodo raiz;
+    private NodoA raiz;
 
     public Arbol() {
         this.raiz = null;
     }
        
-    public Nodo getRaiz() {
+    public NodoA getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(Nodo raiz) {
+    public void setRaiz(NodoA raiz) {
         this.raiz = raiz;
     }
     
@@ -24,8 +24,8 @@ public class Arbol {
         return raiz == null;
     }
     
-    public Nodo buscarPadre(Nodo raiz, String padre){
-        Nodo encontrado = null;
+    public NodoA buscarPadre(NodoA raiz, String padre){
+        NodoA encontrado = null;
         if (raiz.getData() == padre){
             return raiz;
         }
@@ -39,20 +39,20 @@ public class Arbol {
     }
     
      public void agregarNodo(String hijo, String padre, String side){
-         Nodo nodoHijo = new Nodo();
+         NodoA nodoHijo = new NodoA();
          
          if(this.esVacio()){
              this.raiz = nodoHijo;
          }
          else {
-         Nodo nodoPadre = buscarPadre(this.raiz, padre);
+         NodoA nodoPadre = buscarPadre(this.raiz, padre);
          if(nodoPadre == null){
              System.out.println("No existe el padre");
-         } else if (side == "left" & nodoPadre.getHijoIzq() == null){
+         } else if ("left".equals(side) && nodoPadre.getHijoIzq() == null){
              nodoPadre.setHijoIzq(nodoHijo);
-         }else if (side == "right" & nodoPadre.getHijoDer() == null){
+         } else if ("right".equals(side) && nodoPadre.getHijoDer() == null){
              nodoPadre.setHijoDer(nodoHijo);
-         }else{
+         } else{
              System.out.println("No se puede agregar");
          }
          }
@@ -62,7 +62,7 @@ public class Arbol {
          return preOrden(this.raiz, "");
      }
      
-     private String preOrden(Nodo raiz, String ruta){
+     private String preOrden(NodoA raiz, String ruta){
          ruta += raiz.getData();
          if(raiz.getHijoIzq()!= null){
              ruta = preOrden(raiz.getHijoIzq(), ruta);
@@ -78,7 +78,7 @@ public class Arbol {
      public String inOrden(){
          return preOrden(this.raiz, "");
      }
-     private String inOrden(Nodo raiz, String ruta){
+     private String inOrden(NodoA raiz, String ruta){
          if (raiz.getHijoDer()!= null){
              ruta = inOrden(raiz.getHijoDer(), ruta);
          } ruta += raiz.getData();
@@ -91,7 +91,7 @@ public class Arbol {
     public String postOrden(){
         return preOrden(this.raiz, "");
     }
-    private String postOrden(Nodo raiz, String ruta){
+    private String postOrden(NodoA raiz, String ruta){
          if (raiz.getHijoDer()!= null){
              ruta = postOrden(raiz.getHijoDer(), ruta);}
          
@@ -101,14 +101,6 @@ public class Arbol {
          ruta += raiz.getData();
          return ruta;
     }
-         
-         
-     
-     
-     
-    
-   
-    
-    
+
     
 }

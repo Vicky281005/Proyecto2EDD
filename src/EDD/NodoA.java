@@ -1,13 +1,13 @@
-package proyecto2edd.Arbol;
+package EDD;
 
 /**
  *
  * @author jmmor
  */
-public class Nodo {
-        private String data;
-    private Nodo hijoIzq;
-    private Nodo hijoDer;
+public class NodoA {
+    private Object data;
+    private NodoA hijoIzq;
+    private NodoA hijoDer;
 
     
     /**
@@ -46,43 +46,47 @@ public class Nodo {
     /**
      * @return the data
      */
-    public String getData() {
+    public Object getData() {
         return data;
     }
 
     /**
      * @param data the data to set
      */
-    public void setData(String data) {
+    public void setData(Object data) {
         this.data = data;
     }
 
     /**
      * @return the hijoIzq
      */
-    public Nodo getHijoIzq() {
+    public NodoA getHijoIzq() {
         return hijoIzq;
     }
 
     /**
      * @param hijoIzq the hijoIzq to set
      */
-    public void setHijoIzq(Nodo hijoIzq) {
+    public void setHijoIzq(NodoA hijoIzq) {
         this.hijoIzq = hijoIzq;
     }
 
     /**
      * @return the hijoDer
      */
-    public Nodo getHijoDer() {
+    public NodoA getHijoDer() {
         return hijoDer;
     }
 
     /**
      * @param hijoDer the hijoDer to set
      */
-    public void setHijoDer(Nodo hijoDer) {
+    public void setHijoDer(NodoA hijoDer) {
         this.hijoDer = hijoDer;
     }
+    
+    
+    
+    
 
 }

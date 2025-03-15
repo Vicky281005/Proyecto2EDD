@@ -1,20 +1,21 @@
 
-package EDD;
+package Hashtable;
 
+import EDD.Nodo;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author mishel
  */
-public class Lista {
+public class ListaEnlazada {
     private Nodo pFirst; 
     private int size; 
 
 /**
  * Constructor de la clase Lista
  */    
-    public Lista() {
+    public ListaEnlazada() {
         this.pFirst = null;
         this.size = 0;
     }

@@ -4,10 +4,10 @@ package EDD;
  *
  * @author jmmor
  */
-public class NodoA {
+public class NodoArbol {
     private Object data;
-    private NodoA hijoIzq;
-    private NodoA hijoDer;
+    private NodoArbol hijoIzq;
+    private NodoArbol hijoDer;
 
     
     /**
@@ -60,28 +60,28 @@ public class NodoA {
     /**
      * @return the hijoIzq
      */
-    public NodoA getHijoIzq() {
+    public NodoArbol getHijoIzq() {
         return hijoIzq;
     }
 
     /**
      * @param hijoIzq the hijoIzq to set
      */
-    public void setHijoIzq(NodoA hijoIzq) {
+    public void setHijoIzq(NodoArbol hijoIzq) {
         this.hijoIzq = hijoIzq;
     }
 
     /**
      * @return the hijoDer
      */
-    public NodoA getHijoDer() {
+    public NodoArbol getHijoDer() {
         return hijoDer;
     }
 
     /**
      * @param hijoDer the hijoDer to set
      */
-    public void setHijoDer(NodoA hijoDer) {
+    public void setHijoDer(NodoArbol hijoDer) {
         this.hijoDer = hijoDer;
     }
     

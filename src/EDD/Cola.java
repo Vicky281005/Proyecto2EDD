@@ -79,13 +79,13 @@ public class Cola {
     public Object delete(){
         if(!this.isEmpty()){
             if(size == 1){
-                Object eliminado = this.pFirts.getDato();
+                Object eliminado = this.pFirts.getData();
                 this.setpFirts(null);
                 this.setpLast(null);
                 size--;
                 return eliminado;
             }else{
-                Object eliminado = this.pFirts.getDato();
+                Object eliminado = this.pFirts.getData();
                 this.setpFirts(this.pFirts.getpNext());
                 size--;
                  return eliminado;
@@ -104,11 +104,11 @@ public class Cola {
             Nodo aux = this.pFirts;
             String colaStr = "";
             while(aux.getpNext() != null){
-                colaStr += aux.getDato() + "\n";
+                colaStr += aux.getData() + "\n";
                 aux = aux.getpNext();
             }
             
-            colaStr += aux.getDato();
+            colaStr += aux.getData();
             
             JOptionPane.showMessageDialog(null, colaStr);
             

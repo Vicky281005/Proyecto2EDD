@@ -4,6 +4,7 @@ package EDD;
 /**
  *
  * @author mishel
+ * @param <T>
  */
 public class Nodo<T> { // Atributos de la clase Nodo
     private T data;

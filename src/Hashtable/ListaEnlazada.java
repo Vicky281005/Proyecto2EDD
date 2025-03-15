@@ -89,8 +89,7 @@ public class ListaEnlazada<T> {
  public void addLast(T dato) {
     Nodo<T> n = new Nodo(dato);
     if (isEmpty()) {
-        this.pFirst = n;
-        this.pLast = n;
+        this.pFirst = this.pLast= n;
     } else {
         this.pLast.setpNext(n); // Conectar el último nodo actual al nuevo nodo
         this.pLast = n;         // Actualizar pLast al nuevo nodo
@@ -189,6 +188,18 @@ public class ListaEnlazada<T> {
         }
     }
 
+    
+    public void imprimirLista(){
+        System.out.println("-----------------------------------");
+        Nodo nodo= this.pFirst;
+    
+    while(nodo!= null){
+        int data= (int) nodo.getData();
+        System.out.println(data);
+        nodo=nodo.getpNext();
+    }
+    }
+    
 /**
  * Método para eliminar dato por referencia
  * @param referencia 

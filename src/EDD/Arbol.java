@@ -48,11 +48,11 @@ public class Arbol {
          NodoA nodoPadre = buscarPadre(this.raiz, padre);
          if(nodoPadre == null){
              System.out.println("No existe el padre");
-         } else if (side == "left" & nodoPadre.getHijoIzq() == null){
+         } else if ("left".equals(side) && nodoPadre.getHijoIzq() == null){
              nodoPadre.setHijoIzq(nodoHijo);
-         }else if (side == "right" & nodoPadre.getHijoDer() == null){
+         } else if ("right".equals(side) && nodoPadre.getHijoDer() == null){
              nodoPadre.setHijoDer(nodoHijo);
-         }else{
+         } else{
              System.out.println("No se puede agregar");
          }
          }
@@ -101,14 +101,6 @@ public class Arbol {
          ruta += raiz.getData();
          return ruta;
     }
-         
-         
-     
-     
-     
-    
-   
-    
-    
+
     
 }

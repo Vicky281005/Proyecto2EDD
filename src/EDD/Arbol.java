@@ -86,7 +86,12 @@ public class Arbol {
     }
     return null; 
 }
-
+/**
+ * Metodo para eliminar un nodo del arbol
+ * @param raiz
+ * @param valor
+ * @return 
+ */
     public boolean eliminarNodo(NodoArbol raiz, String valor) {
     NodoArbol padre = buscarPadre(raiz, valor); 
     if (padre == null) {

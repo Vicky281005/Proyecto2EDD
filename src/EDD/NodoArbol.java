@@ -8,18 +8,22 @@ public class NodoArbol {
     private Object data;
     private NodoArbol[] hijos;
     int numHijos;
-
+    /**
+     * Constructor de la clase NodoArbol
+     * @param data
+     * @param maxHijos 
+     */
     public NodoArbol(Object data, int maxHijos) {
         this.data = data;
         this.hijos = new NodoArbol[maxHijos];
         this.numHijos = 0;
     }
   
-/**
- * Agrega un hijo al arbol
- * @param hijo
- * @return 
- */
+    /**
+     * Agrega un nodo hijo al arbol
+     * @param hijo
+     * @return 
+     */
     public boolean agregarHijo(NodoArbol hijo) {
         if (numHijos < hijos.length) {
             hijos[numHijos++] = hijo; 
@@ -28,6 +32,11 @@ public class NodoArbol {
             return false;
         }
     }
+    /**
+     * Elimina un nodo hijo al arbol
+     * @param data
+     * @return 
+     */
      public boolean eliminarHijo(String data) {
             for (int i = 0; i < numHijos; i++) {
                 if (hijos[i].getData().equals(data)) {

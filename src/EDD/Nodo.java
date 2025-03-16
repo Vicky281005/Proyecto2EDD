@@ -4,44 +4,43 @@ package EDD;
 /**
  *
  * @author mishel
+ * @param <T>
  */
-public class Nodo {
-    private Object dato;
+public class Nodo<T> { // Atributos de la clase Nodo
+    private T data;
     private Nodo pNext;
 
-
-/**
- * Constructor de la Clase Nodo el cual es el nodo que se va a utilizar en la clase Lista y Pila/Cola
- * @param dato 
- */    
-    public Nodo(Object dato) {
-        this.dato = dato;
+    public Nodo(T data) {///constructor de la clase Nodo
+        this.data = data;
         this.pNext = null;
     }
-
-    
-/**
- * Getters y Setters de la Clase Nodo el cual es el nodo que se va a utilizar en la clase Lista y Pila/Cola
- * @return 
- */
-    public Object getDato() {
-        return dato;
+     /**
+     * Se encarga de modificar la data de un nodo
+     * @param data 
+     */
+    public void setData(T data) { 
+        this.data = data;
     }
-
-    public void setDato(Object dato) {
-        this.dato = dato;
+    /**
+     * Modifica el apuntador pNext de un nodo
+     * @param pNext 
+     */
+    public void setpNext(Nodo pNext) { 
+        this.pNext = pNext;
     }
-
+    /**
+     * Obtiene la data de un nodo
+     * @return 
+     */
+    public T getData() { 
+        return data;
+    }
+     /**
+     * Obtiene el apuntador al siguiente de un nodo
+     * @return 
+     */
     public Nodo getpNext() {
         return pNext;
     }
-
-    public void setpNext(Nodo pNext) {
-        this.pNext = pNext;
-    }
-
-    Object getData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-     
+    
 }

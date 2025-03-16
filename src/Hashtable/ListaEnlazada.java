@@ -1,23 +1,34 @@
 
-package EDD;
+package Hashtable;
 
+import EDD.Nodo;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author mishel
  */
-public class Lista {
+public class ListaEnlazada<T> {
     private Nodo pFirst; 
+    private Nodo pLast;
     private int size; 
 
-/**
- * Constructor de la clase Lista
- */    
-    public Lista() {
-        this.pFirst = null;
-        this.size = 0;
+    /**
+     * Constructor Crea una lista vacia
+     */
+    public ListaEnlazada() {
+        this.pFirst = this.pLast = null;
     }
+
+    /**
+     * Constructor Crea una lista con un solo elemento
+     *
+     * @param n Nodo que se aniadira
+     */
+    public ListaEnlazada(Nodo n) {
+        this.pFirst = this.pLast = n;
+    }
+
   
 /**
  * Getters y Setters de la clase Lista
@@ -25,6 +36,14 @@ public class Lista {
  */    
     public Nodo getpFirst() {
         return pFirst;
+    }
+
+    public void setpLast(Nodo pLast) {
+        this.pLast = pLast;
+    }
+
+    public Nodo getpLast() {
+        return pLast;
     }
 
     public void setpFirst(Nodo pFirst) {
@@ -39,78 +58,74 @@ public class Lista {
         this.size = size;
     }
     
+    /**
+     * Revisa si la lista esta vacia o no
+     *
+     * @return True si esta vacia, false si no
+     */
     public boolean isEmpty() {
         return this.pFirst == null;
     }
 
-/**
- * Método para insertar dato al principio
- * @param dato
- * @return 
- */    
-    public Nodo insertarInicio(Object dato) {
-
-        Nodo pNew = new Nodo(dato);
-
-        if (this.isEmpty()) {
-            pFirst = pNew;
+ /**
+     * Se encarga de añadir un nodo en el primer lugar de una lista
+     *
+     * @param dato
+     */
+    public void addFirst(T dato) {
+        Nodo<T> n = new Nodo(dato);
+        if (isEmpty()) {
+            this.pFirst = n;
+            this.pLast = n;
+            this.pFirst.setpNext(this.pLast);
+            this.pLast.setpNext(null);
         } else {
-            pNew.setpNext(pFirst);
-            pFirst = pNew;
-        }
-        size++;
-        return pNew;
-    }
-
-/**
- * Método para insertar dato al final
- * @param dato 
- */
-    public void insertarFinal(Object dato) {
-        Nodo pNew = new Nodo(dato);
-        if (this.isEmpty()) {
-            pFirst = pNew;
-        } else {
-            Nodo aux = pFirst;
-            while (aux.getpNext() != null) {
-                aux = aux.getpNext();
-            }
-            aux.setpNext(pNew);
+            n.setpNext(this.pFirst);
+            this.pFirst = n;
         }
         size++;
     }
+
+ public void addLast(T dato) {
+    Nodo<T> n = new Nodo(dato);
+    if (isEmpty()) {
+        this.pFirst = this.pLast= n;
+    } else {
+        this.pLast.setpNext(n); // Conectar el último nodo actual al nuevo nodo
+        this.pLast = n;         // Actualizar pLast al nuevo nodo
+    }
+    size++;
+}
 
 /**
  * Método para insertar dato por posición
  * @param posicion
  * @param valor 
  */
-    public void insertarPorPosicion(int posicion, Object valor) {
-        if (posicion >= 0 && posicion < size) {
-            Nodo nuevo = new Nodo(valor);
-            if (posicion == 0) {
-                nuevo.setpNext(pFirst);
-                pFirst = nuevo;
-            } else {
-                if (posicion == size - 1) {
-                    Nodo aux = pFirst;
-                    while (aux.getpNext() != null) {
-                        aux = aux.getpNext();
-                    }
-                    aux.setpNext(nuevo);
-                } else {
-                    Nodo aux = pFirst;
-                    for (int i = 0; i < (posicion - 1); i++) {
-                        aux = aux.getpNext();
-                    }
-                    Nodo siguiente = aux.getpNext();
-                    aux.setpNext(nuevo);
-                    nuevo.setpNext(siguiente);
-                }
-            }
-            size++;
-        }
+    public void insertarPorPosicion(int posicion, T valor) {
+    if (posicion < 0 || posicion > size) {
+        throw new IndexOutOfBoundsException("Posición inválida");
     }
+    Nodo<T> nuevo = new Nodo<>(valor);
+    if (posicion == 0) { // Insertar en la primera posición
+        nuevo.setpNext(pFirst);
+        pFirst = nuevo;
+        if (size == 0) { // Si la lista estaba vacía, pLast también apunta a nuevo
+            pLast = nuevo;
+        }
+    } else if (posicion == size) { // Insertar al final usando pLast
+        pLast.setpNext(nuevo);
+        pLast = nuevo;
+    } else { // Insertar en una posición intermedia
+        Nodo<T> aux = pFirst;
+        for (int i = 0; i < (posicion - 1); i++) {
+            aux = aux.getpNext();
+        }
+        nuevo.setpNext(aux.getpNext());
+        aux.setpNext(nuevo);
+    }
+    size++;
+}
     
 
 /**
@@ -126,7 +141,7 @@ public class Lista {
             if (buscar(ref)) {
                 Nodo aux = pFirst;
                 // Recorre la lista hasta llegar al nodo de referencia
-                while (aux.getDato() != ref) {
+                while (aux.getData() != ref) {
                     aux = aux.getpNext();
                 }
                 // Crea un respaldo de la continuación de la lista
@@ -145,7 +160,7 @@ public class Lista {
  * Función para eliminar dato ubicado al inicio
  * @return 
  */
-    public boolean eliminarInicio() {
+    public boolean eliminarpFirst() {
         if (!this.isEmpty()) {
             pFirst = pFirst.getpNext();
             size--;
@@ -158,7 +173,7 @@ public class Lista {
 /**
  * Método para eliminar dato ubicado al final
  */
-    public void eliminarFinal() {
+    public void eliminarpLast() {
         if (!this.isEmpty()) {
             if (getSize() == 1) {
                 this.eliminar();
@@ -173,6 +188,18 @@ public class Lista {
         }
     }
 
+    
+    public void imprimirLista(){
+        System.out.println("-----------------------------------");
+        Nodo nodo= this.pFirst;
+    
+    while(nodo!= null){
+        int data= (int) nodo.getData();
+        System.out.println(data);
+        nodo=nodo.getpNext();
+    }
+    }
+    
 /**
  * Método para eliminar dato por referencia
  * @param referencia 
@@ -180,11 +207,11 @@ public class Lista {
     public void eliminarPorReferencia(Object referencia) {
 
         if (this.buscar(referencia)) {
-            if (pFirst.getDato() == referencia) {
+            if (pFirst.getData() == referencia) {
                 pFirst = pFirst.getpNext();
             } else {
                 Nodo aux = pFirst;
-                while (aux.getpNext().getDato() != referencia) {
+                while (aux.getpNext().getData() != referencia) {
                     aux = aux.getpNext();
                 }
                 Nodo siguiente = aux.getpNext().getpNext();
@@ -223,10 +250,10 @@ public class Lista {
     public void editarPorReferencia(Object referencia, Object dato) {
         if (buscar(referencia)) {
             Nodo aux = pFirst;
-            while (aux.getDato() != referencia) {
+            while (aux.getData() != referencia) {
                 aux = aux.getpNext();
             }
-            aux.setDato(dato);
+            aux.setData(dato);
         }
     }
 
@@ -239,14 +266,14 @@ public class Lista {
 
         if (posicion >= 0 && posicion < size) {
             if (posicion == 0) {
-                pFirst.setDato(dato);
+                pFirst.setData(dato);
             } else {
                 Nodo aux = pFirst;
 
                 for (int i = 0; i < posicion; i++) {
                     aux = aux.getpNext();
                 }
-                aux.setDato(dato);
+                aux.setData(dato);
             }
         }
     }
@@ -261,13 +288,13 @@ public class Lista {
         if (posicion >= 0 && posicion < size) {
 
             if (posicion == 0) {
-                return pFirst.getDato();
+                return pFirst.getData();
             } else {
                 Nodo aux = pFirst;
                 for (int i = 0; i < posicion; i++) {
                     aux = aux.getpNext();
                 }
-                return aux.getDato();
+                return aux.getData();
             }
         }
         return null;
@@ -284,7 +311,7 @@ public class Lista {
 
             Nodo aux = pFirst;
             int cont = 0;
-            while (referencia != aux.getDato()) {
+            while (referencia != aux.getData()) {
                 cont++;
                 aux = aux.getpNext();
             }
@@ -303,7 +330,7 @@ public class Lista {
         Nodo aux = pFirst;
         boolean encontrado = false;
         while (aux != null && encontrado != true) {
-            if (referencia == aux.getDato()) {
+            if (referencia == aux.getData()) {
                 encontrado = true;
             } else {
                 aux = aux.getpNext();
@@ -320,7 +347,7 @@ public class Lista {
             Nodo aux = pFirst;
             String expresion = "";
             while (aux != null) {
-                expresion = expresion + aux.getDato().toString() + "\n";
+                expresion = expresion + aux.getData().toString() + "\n";
                 aux = aux.getpNext();
             }
             JOptionPane.showMessageDialog(null, expresion);

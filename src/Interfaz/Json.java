@@ -1,11 +1,9 @@
 package Interfaz;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -37,9 +35,9 @@ public class Json {
                 var listaEspecieClaveValor = objectoEspecie.getAsJsonObject().entrySet();
                 for(var especieClaveValor : listaEspecieClaveValor ){
                     JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
-//                    System.out.println(especieClaveValor.getKey());
+                    System.out.println(especieClaveValor.getKey());
                     for (var preguntaObjeto : listaPreguntas){
-//                        System.out.println(preguntaObjeto);
+                        System.out.println(preguntaObjeto);
                         for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()){
                             System.out.println(preguntaClaveValor);
                         }

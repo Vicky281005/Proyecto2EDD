@@ -6,43 +6,41 @@ package EDD;
  */
 public class NodoArbol {
     private Object data;
-    private NodoArbol hijoIzq;
-    private NodoArbol hijoDer;
+    private NodoArbol[] hijos;
+    int numHijos;
 
+    public NodoArbol(Object data, int maxHijos) {
+        this.data = data;
+        this.hijos = new NodoArbol[maxHijos];
+        this.numHijos = 0;
+    }
+  
+/**
+ * Agrega un hijo al arbol
+ * @param hijo
+ * @return 
+ */
+    public boolean agregarHijo(NodoArbol hijo) {
+        if (numHijos < hijos.length) {
+            hijos[numHijos++] = hijo; 
+            return true;
+        } else {
+            return false;
+        }
+    }
+     public boolean eliminarHijo(String data) {
+            for (int i = 0; i < numHijos; i++) {
+                if (hijos[i].getData().equals(data)) {
+                    for (int j = i; j < numHijos - 1; j++) {
+                        hijos[j] = hijos[j + 1];
+                    }
+                    hijos[--numHijos] = null; 
+                    return true;
+                }
+            }
+            return false; 
+        }
     
-    /**
-     * Comprueba si el nodo tiene un hijo izquierdo
-     * @return 
-     */
-    public boolean tieneIzquierda(){
-        return this.getHijoIzq() != null;
-    }    
-    /**
-     * Comprueba si el nodo tiene un hijo derecho
-     * @return 
-     */
-    public boolean tieneDerecha(){
-        return this.getHijoDer() != null;
-    } 
-    /**
-     * Comprueba que no tenga hijos
-     * @return 
-     */
-    public boolean esHoja() {
-    return this.getHijoIzq() == null && this.getHijoDer() == null;}
-    
-    
-    /**
-     * Cuenta el numero de hijos que tiene los nodos
-     * @return 
-     */
-    public int contarHijos() {
-    int count = 0;
-    if (this.getHijoIzq() != null) count++;
-    if (this.getHijoDer() != null) count++;
-    return count;
-}
-
     /**
      * @return the data
      */
@@ -58,35 +56,31 @@ public class NodoArbol {
     }
 
     /**
-     * @return the hijoIzq
+     * @return the numHijos
      */
-    public NodoArbol getHijoIzq() {
-        return hijoIzq;
+    public int getNumHijos() {
+        return numHijos;
     }
 
     /**
-     * @param hijoIzq the hijoIzq to set
+     * @param numHijos the numHijos to set
      */
-    public void setHijoIzq(NodoArbol hijoIzq) {
-        this.hijoIzq = hijoIzq;
+    public void setNumHijos(int numHijos) {
+        this.numHijos = numHijos;
     }
 
     /**
-     * @return the hijoDer
+     * @return the hijos
      */
-    public NodoArbol getHijoDer() {
-        return hijoDer;
+    public NodoArbol[] getHijos() {
+        return hijos;
     }
 
     /**
-     * @param hijoDer the hijoDer to set
+     * @param hijos the hijos to set
      */
-    public void setHijoDer(NodoArbol hijoDer) {
-        this.hijoDer = hijoDer;
+    public void setHijos(NodoArbol[] hijos) {
+        this.hijos = hijos;
     }
-    
-    
-    
-    
 
 }

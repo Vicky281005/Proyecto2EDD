@@ -27,152 +27,131 @@ public class Arbol {
      public boolean esVacio(){
         return raiz == null;
     }
-    /**
-     * Metodo para buscar un nodo especifico del arbol
-     * @param raiz
-     * @param valor
-     * @return 
-     */
-    public NodoArbol buscarNodo(NodoArbol raiz, String valor) {
-    if (raiz == null) {
-        return null;
-    }
-    if (raiz.getData().equals(valor)) {
-        return raiz;
-    }
-    for (int i = 0; i < raiz.getNumHijos(); i++) {
-        NodoArbol encontrado = buscarNodo(raiz.getHijos()[i], valor);
-        if (encontrado != null) {
-            return encontrado;
-        }
-    }
-    return null;
-    }
-    /**
-     * Metodo para agregar nodos al arbol
-     * @param hijo
-     * @param padre
-     * @param maxHijos 
-     */
-    public void agregarNodo(String hijo, String padre, int maxHijos) {
-    NodoArbol nodoHijo = new NodoArbol(hijo, maxHijos);
-    if (this.esVacio()) {
-        this.raiz = nodoHijo;
-    } else {
-        NodoArbol nodoPadre = buscarNodo(this.raiz, padre);
-        if (nodoPadre == null) {
-        } else if (!nodoPadre.agregarHijo(nodoHijo)) {
-        }
-    }
-    }
-    /**
-     * Metodo para buscar el padre
-     * @param raiz
-     * @param valor
-     * @return 
-     */
-    public NodoArbol buscarPadre(NodoArbol raiz, String valor) {
-    if (raiz == null || raiz.getNumHijos() == 0) {
-        return null; 
-    }
-    for (int i = 0; i < raiz.getNumHijos(); i++) {
-        if (raiz.getHijos()[i].getData().equals(valor)) {
-            return raiz; 
-        }
-        NodoArbol padre = buscarPadre(raiz.getHijos()[i], valor);
-        if (padre != null) {
-            return padre; 
-        }
-    }
-    return null; 
+     /**
+      * Inserta un nodo en el arbol binario
+      * @param data 
+      */
+     public void insertar(Object data) {
+    raiz = insertarNodo(raiz, data);
 }
+
+    private NodoArbol insertarNodo(NodoArbol nodo, Object data) {
+        if (nodo == null) {
+            nodo = new NodoArbol();
+            nodo.setData(data);
+            return nodo;
+        }
+
+        if (nodo.getHijoIzq() == null) {
+            nodo.setHijoIzq(insertarNodo(nodo.getHijoIzq(), data));
+        }
+        else if (nodo.getHijoDer() == null) {
+            nodo.setHijoDer(insertarNodo(nodo.getHijoDer(), data));
+        }
+        else {
+            System.out.println("No se puede insertar: el nodo ya tiene dos hijos.");
+        }
+
+        return nodo;
+    }
 /**
- * Metodo para eliminar un nodo del arbol
- * @param raiz
- * @param valor
+ * Busca un nodo en el arbol
+ * @param data
  * @return 
  */
-    public boolean eliminarNodo(NodoArbol raiz, String valor) {
-    NodoArbol padre = buscarPadre(raiz, valor); 
-    if (padre == null) {
-        return false; 
+    public boolean buscar(Object data) {
+        return buscarNodo(raiz, data);
     }
-    for (int i = 0; i < padre.getNumHijos(); i++) {
-        if (padre.getHijos()[i].getData().equals(valor)) {
-            for (int j = i; j < padre.getNumHijos() - 1; j++) {
-                padre.getHijos()[j] = padre.getHijos()[j + 1];
+
+    private boolean buscarNodo(NodoArbol nodo, Object data) {
+        if (nodo == null) {
+            return false;
+        }
+        if (nodo.getData().equals(data)) {
+            return true;
+        }
+        return buscarNodo(nodo.getHijoIzq(), data) || buscarNodo(nodo.getHijoDer(), data);
+    }
+    /**
+     * Elimina los nodos del arbol
+     * @param data 
+     */
+    
+    public void eliminar(Object data) {
+        raiz = eliminarNodo(raiz, data);
+    }
+
+    private NodoArbol eliminarNodo(NodoArbol nodo, Object data) {
+        if (nodo == null) {
+            return null;
+        }
+
+        if (nodo.getData().equals(data)) {
+            if (nodo.getHijoIzq() == null && nodo.getHijoDer() == null) {
+                return null;
             }
-            padre.getHijos()[padre.getNumHijos() - 1] = null; 
-            padre.numHijos--; 
-            return true; 
+            if (nodo.getHijoIzq() == null) {
+                return nodo.getHijoDer();
+            }
+            if (nodo.getHijoDer() == null) {
+                return nodo.getHijoIzq();
+            }
+            Object valorMin = encontrarMin(nodo.getHijoDer());
+            nodo.setData(valorMin);
+            nodo.setHijoDer(eliminarNodo(nodo.getHijoDer(), valorMin));
+        } else {
+            nodo.setHijoIzq(eliminarNodo(nodo.getHijoIzq(), data));
+            nodo.setHijoDer(eliminarNodo(nodo.getHijoDer(), data));
+        }
+
+        return nodo;
+    }
+/**
+ * Metodo de recorrido de los arboles
+ * @param nodo
+ * @return 
+ */
+    private Object encontrarMin(NodoArbol nodo) {
+        while (nodo.getHijoIzq() != null) {
+            nodo = nodo.getHijoIzq();
+        }
+        return nodo.getData();
+    }
+    public void preorden() {
+        preordenRec(raiz);
+        System.out.println();
+    }
+
+    private void preordenRec(NodoArbol nodo) {
+        if (nodo != null) {
+            System.out.print(nodo.getData() + " ");
+            preordenRec(nodo.getHijoIzq());
+            preordenRec(nodo.getHijoDer());
         }
     }
-    return false; 
-    
-    }
-    /**
-     * Metodo de recorrido preOrden
-     * @param raiz
-     * @param ruta
-     * @return 
-     */
-    public String preOrden(NodoArbol raiz, String ruta) {
-    if (raiz == null) {
-        return ruta;
-    }
-    ruta += raiz.getData() + " "; 
-    for (int i = 0; i < raiz.getNumHijos(); i++) {
-        ruta = preOrden(raiz.getHijos()[i], ruta); 
-    }
-    return ruta;
-    }
-    
-    /**
-     * Metodo de recorrido en postOrden
-     * @param raiz
-     * @param ruta
-     * @return 
-     */
-    public String postOrden(NodoArbol raiz, String ruta) {
-    if (raiz == null) {
-        return ruta;
-    }
-    for (int i = 0; i < raiz.getNumHijos(); i++) {
-        ruta = postOrden(raiz.getHijos()[i], ruta); 
-    }
-    ruta += raiz.getData() + " "; 
-    return ruta;
-    }
-    
-    /**
-     * Metodo de recorrido en inOrden
-     * @param raiz
-     * @param ruta
-     * @return 
-     */
-    public String inOrden(NodoArbol raiz, String ruta) {
-    if (raiz == null) {
-        return ruta;
-    }
-    int mitad = raiz.getNumHijos() / 2; 
-    for (int i = 0; i < mitad; i++) {
-        ruta = inOrden(raiz.getHijos()[i], ruta);
-    }
-    ruta += raiz.getData() + " "; 
-
-    for (int i = mitad; i < raiz.getNumHijos(); i++) {
-        ruta = inOrden(raiz.getHijos()[i], ruta);
-    }
-    return ruta;
+    public void inorden() {
+        inordenRec(raiz);
+        System.out.println();
     }
 
+    private void inordenRec(NodoArbol nodo) {
+        if (nodo != null) {
+            inordenRec(nodo.getHijoIzq());
+            System.out.print(nodo.getData() + " ");
+            inordenRec(nodo.getHijoDer());
+        }
+    }
+    public void postorden() {
+        postordenRec(raiz);
+        System.out.println();
+    }
 
+    private void postordenRec(NodoArbol nodo) {
+        if (nodo != null) {
+            postordenRec(nodo.getHijoIzq());
+            postordenRec(nodo.getHijoDer());
+            System.out.print(nodo.getData() + " ");
+        }
+    }
 
-    
-    
-
-
-
-   
-    
 }

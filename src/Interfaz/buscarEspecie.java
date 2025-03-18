@@ -6,7 +6,7 @@ package Interfaz;
 
 import EDD.Arbol;
 import EDD.Nodo;
-import Hashtable.Hashtable;
+//import Hashtable.Hashtable;
 
 /**
  *
@@ -14,7 +14,7 @@ import Hashtable.Hashtable;
  */
 public class buscarEspecie extends javax.swing.JFrame {
     static Arbol arbol;
-    Hashtable hash = new Hashtable();
+//    Hashtable hash = new Hashtable();
 
     /**
      * Creates new form buscarEspecie
@@ -48,6 +48,7 @@ public class buscarEspecie extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        buscar.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscar.setText("Buscar:");
         jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
 
@@ -58,6 +59,7 @@ public class buscarEspecie extends javax.swing.JFrame {
         });
         jPanel1.add(buscaPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 140, -1));
 
+        buscaHash.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaHash.setText("Busqueda por Hash Table");
         buscaHash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +68,7 @@ public class buscarEspecie extends javax.swing.JFrame {
         });
         jPanel1.add(buscaHash, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
 
+        buscaArbol.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaArbol.setText("Busca por Arbol");
         buscaArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +77,7 @@ public class buscarEspecie extends javax.swing.JFrame {
         });
         jPanel1.add(buscaArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 12)); // NOI18N
         jLabel1.setText("Tiempo de busqueda: ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 

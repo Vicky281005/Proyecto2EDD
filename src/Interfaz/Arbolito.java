@@ -27,76 +27,91 @@ public class Arbolito extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        salirbtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         buscaEspecie = new javax.swing.JButton();
         mostarArbol = new javax.swing.JButton();
-        cargaClave = new javax.swing.JButton();
         determinarEspecie = new javax.swing.JButton();
+        cargaClave = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        salirbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        salirbtn.setText("Salir");
-        salirbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salirbtnActionPerformed(evt);
-            }
-        });
-        jPanel2.add(salirbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 90, 30));
-
+        buscaEspecie.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         buscaEspecie.setText("Buscar Especie");
         buscaEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscaEspecieActionPerformed(evt);
             }
         });
-        jPanel2.add(buscaEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 120, 30));
+        jPanel3.add(buscaEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 290, 50));
 
+        mostarArbol.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         mostarArbol.setText("Mostrar Arbol");
         mostarArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostarArbolActionPerformed(evt);
             }
         });
-        jPanel2.add(mostarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 130, 40));
+        jPanel3.add(mostarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 290, 50));
 
-        cargaClave.setText("Cargar Clave Dicotomica");
-        cargaClave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cargaClaveActionPerformed(evt);
-            }
-        });
-        jPanel2.add(cargaClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 30));
-
+        determinarEspecie.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         determinarEspecie.setText("Determinar Especie del arbol");
         determinarEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 determinarEspecieActionPerformed(evt);
             }
         });
-        jPanel2.add(determinarEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, 30));
+        jPanel3.add(determinarEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 220, 300, 50));
+
+        cargaClave.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
+        cargaClave.setText("Cargar Clave Dicotomica");
+        cargaClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargaClaveActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cargaClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 290, 50));
+
+        jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
+        jLabel1.setText("Clave Dicotomica");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, 30));
+
+        salirbtn.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
+        salirbtn.setText("Salir");
+        salirbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salirbtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(salirbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 290, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbtnActionPerformed
-        JOptionPane.showMessageDialog(null, "Gracias por visitarnos");
+        JOptionPane.showMessageDialog(null, "Gracias por participar");
         this.dispose();
     }//GEN-LAST:event_salirbtnActionPerformed
 
@@ -107,20 +122,19 @@ public class Arbolito extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cargaClaveActionPerformed
 
+    private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed
+        determinarClave clave = new determinarClave(arbol);
+        clave.setLocationRelativeTo(null);
+        clave.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_determinarEspecieActionPerformed
+
     private void mostarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostarArbolActionPerformed
         mostrarArbol mostrar = new mostrarArbol(arbol);
         mostrar.setLocationRelativeTo(null);
         mostrar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_mostarArbolActionPerformed
-
-    private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed
-       determinarClave clave = new determinarClave(arbol);
-        clave.setLocationRelativeTo(null);
-        clave.setVisible(true);
-        this.dispose();
-       
-    }//GEN-LAST:event_determinarEspecieActionPerformed
 
     private void buscaEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaEspecieActionPerformed
         buscarEspecie buscar = new buscarEspecie(arbol);
@@ -168,8 +182,9 @@ public class Arbolito extends javax.swing.JFrame {
     private javax.swing.JButton buscaEspecie;
     private javax.swing.JButton cargaClave;
     private javax.swing.JButton determinarEspecie;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JButton mostarArbol;
     private javax.swing.JButton salirbtn;
     // End of variables declaration//GEN-END:variables

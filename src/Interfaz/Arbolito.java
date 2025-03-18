@@ -1,6 +1,7 @@
 
 package Interfaz;
 
+import EDD.Arbol;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,7 +9,7 @@ import javax.swing.JOptionPane;
  * @author jmmor
  */
 public class Arbolito extends javax.swing.JFrame {
-
+    Arbol arbol;
     /**
      * Creates new form Arbolito
      */
@@ -28,6 +29,10 @@ public class Arbolito extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         salirbtn = new javax.swing.JButton();
+        buscaEspecie = new javax.swing.JButton();
+        mostarArbol = new javax.swing.JButton();
+        cargaClave = new javax.swing.JButton();
+        determinarEspecie = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -40,7 +45,39 @@ public class Arbolito extends javax.swing.JFrame {
                 salirbtnActionPerformed(evt);
             }
         });
-        jPanel2.add(salirbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
+        jPanel2.add(salirbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 90, 30));
+
+        buscaEspecie.setText("Buscar Especie");
+        buscaEspecie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaEspecieActionPerformed(evt);
+            }
+        });
+        jPanel2.add(buscaEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 120, 30));
+
+        mostarArbol.setText("Mostrar Arbol");
+        mostarArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostarArbolActionPerformed(evt);
+            }
+        });
+        jPanel2.add(mostarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 130, 40));
+
+        cargaClave.setText("Cargar Clave Dicotomica");
+        cargaClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargaClaveActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cargaClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 180, 30));
+
+        determinarEspecie.setText("Determinar Especie del arbol");
+        determinarEspecie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                determinarEspecieActionPerformed(evt);
+            }
+        });
+        jPanel2.add(determinarEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, -1, 30));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,6 +99,35 @@ public class Arbolito extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Gracias por visitarnos");
         this.dispose();
     }//GEN-LAST:event_salirbtnActionPerformed
+
+    private void cargaClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaClaveActionPerformed
+        cargarClave carga = new cargarClave();
+        carga.setLocationRelativeTo(null);
+        carga.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cargaClaveActionPerformed
+
+    private void mostarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostarArbolActionPerformed
+        mostrarArbol mostrar = new mostrarArbol(arbol);
+        mostrar.setLocationRelativeTo(null);
+        mostrar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_mostarArbolActionPerformed
+
+    private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed
+       determinarClave clave = new determinarClave(arbol);
+        clave.setLocationRelativeTo(null);
+        clave.setVisible(true);
+        this.dispose();
+       
+    }//GEN-LAST:event_determinarEspecieActionPerformed
+
+    private void buscaEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaEspecieActionPerformed
+        buscarEspecie buscar = new buscarEspecie(arbol);
+        buscar.setLocationRelativeTo(null);
+        buscar.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_buscaEspecieActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,8 +165,12 @@ public class Arbolito extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscaEspecie;
+    private javax.swing.JButton cargaClave;
+    private javax.swing.JButton determinarEspecie;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton mostarArbol;
     private javax.swing.JButton salirbtn;
     // End of variables declaration//GEN-END:variables
 }

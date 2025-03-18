@@ -1,18 +1,20 @@
-
 package EDD;
+
+import MainClass.Pregunta;
 
 /**
  *
  * @author jmmor
  */
 public class Arbol {
+
     private NodoArbol raiz;
-
-
+    public int size;
     public Arbol() {
         this.raiz = null;
+        this.size = 0;
     }
-       
+
     public NodoArbol getRaiz() {
         return raiz;
     }
@@ -20,20 +22,25 @@ public class Arbol {
     public void setRaiz(NodoArbol raiz) {
         this.raiz = raiz;
     }
+
     /**
      * Metodo para corroborar si la raiz es vacia
-     * @return 
+     *
+     * @return
      */
-     public boolean esVacio(){
+    public boolean esVacio() {
         return raiz == null;
     }
-     /**
-      * Inserta un nodo en el arbol binario
-      * @param data 
-      */
-     public void insertar(Object data) {
-    raiz = insertarNodo(raiz, data);
-}
+
+    /**
+     * Inserta un nodo en el arbol binario
+     *
+     * @param data
+     */
+    public void insertar(Object data) {
+        raiz = insertarNodo(raiz, data);
+    this.size += 1;
+    }
 
     private NodoArbol insertarNodo(NodoArbol nodo, Object data) {
         if (nodo == null) {
@@ -44,21 +51,21 @@ public class Arbol {
 
         if (nodo.getHijoIzq() == null) {
             nodo.setHijoIzq(insertarNodo(nodo.getHijoIzq(), data));
-        }
-        else if (nodo.getHijoDer() == null) {
+        } else if (nodo.getHijoDer() == null) {
             nodo.setHijoDer(insertarNodo(nodo.getHijoDer(), data));
-        }
-        else {
+        } else {
             System.out.println("No se puede insertar: el nodo ya tiene dos hijos.");
         }
 
         return nodo;
     }
-/**
- * Busca un nodo en el arbol
- * @param data
- * @return 
- */
+
+    /**
+     * Busca un nodo en el arbol
+     *
+     * @param data
+     * @return
+     */
     public boolean buscar(Object data) {
         return buscarNodo(raiz, data);
     }
@@ -72,11 +79,12 @@ public class Arbol {
         }
         return buscarNodo(nodo.getHijoIzq(), data) || buscarNodo(nodo.getHijoDer(), data);
     }
+
     /**
      * Elimina los nodos del arbol
-     * @param data 
+     *
+     * @param data
      */
-    
     public void eliminar(Object data) {
         raiz = eliminarNodo(raiz, data);
     }
@@ -106,29 +114,34 @@ public class Arbol {
 
         return nodo;
     }
-/**
- * Metodo de recorrido de los arboles
- * @param nodo
- * @return 
- */
+
+    /**
+     * Metodo de recorrido de los arboles
+     *
+     * @param nodo
+     * @return
+     */
     private Object encontrarMin(NodoArbol nodo) {
         while (nodo.getHijoIzq() != null) {
             nodo = nodo.getHijoIzq();
         }
         return nodo.getData();
     }
-    public void preorden() {
-        preordenRec(raiz);
-        System.out.println();
+
+    public NodoArbol[] preorden() {
+        return preordenRec(raiz, new NodoArbol[size], 0);
+        
     }
 
-    private void preordenRec(NodoArbol nodo) {
+    private NodoArbol[] preordenRec(NodoArbol nodo, NodoArbol[] recorrido, int index) {
         if (nodo != null) {
-            System.out.print(nodo.getData() + " ");
-            preordenRec(nodo.getHijoIzq());
-            preordenRec(nodo.getHijoDer());
+            recorrido[index] = nodo;
+            recorrido = preordenRec(nodo.getHijoIzq(), recorrido, index +1);
+            recorrido = preordenRec(nodo.getHijoDer(), recorrido, index +1);
         }
+        return recorrido;
     }
+
     public void inorden() {
         inordenRec(raiz);
         System.out.println();
@@ -141,6 +154,7 @@ public class Arbol {
             inordenRec(nodo.getHijoDer());
         }
     }
+
     public void postorden() {
         postordenRec(raiz);
         System.out.println();
@@ -153,5 +167,27 @@ public class Arbol {
             System.out.print(nodo.getData() + " ");
         }
     }
+    
+    
 
+    public String posordenSearch(String clave) {
+        return postordenRecSearch(raiz, "", clave);
+    }
+
+    private String postordenRecSearch(NodoArbol nodo, String recorrido, String clave) {
+        if (nodo != null) {
+            if (recorrido.equals("")) {
+                recorrido = postordenRecSearch(nodo.getHijoIzq(), recorrido, clave);
+            }
+            if (recorrido.equals("")) {
+                recorrido = postordenRecSearch(nodo.getHijoDer(), recorrido, clave);
+            }
+            Pregunta p = (Pregunta) nodo.getData();
+
+            if (!recorrido.equals("") || p.getSinopsis().equals(clave)) {
+                recorrido = p.getSinopsis() + "\n" + recorrido;
+            }
+        }
+        return recorrido;
+    }
 }

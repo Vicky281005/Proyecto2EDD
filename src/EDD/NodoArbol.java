@@ -6,49 +6,8 @@ package EDD;
  */
 public class NodoArbol {
     private Object data;
-    private NodoArbol[] hijos;
-    int numHijos;
-    /**
-     * Constructor de la clase NodoArbol
-     * @param data
-     * @param maxHijos 
-     */
-    public NodoArbol(Object data, int maxHijos) {
-        this.data = data;
-        this.hijos = new NodoArbol[maxHijos];
-        this.numHijos = 0;
-    }
-  
-    /**
-     * Agrega un nodo hijo al arbol
-     * @param hijo
-     * @return 
-     */
-    public boolean agregarHijo(NodoArbol hijo) {
-        if (numHijos < hijos.length) {
-            hijos[numHijos++] = hijo; 
-            return true;
-        } else {
-            return false;
-        }
-    }
-    /**
-     * Elimina un nodo hijo al arbol
-     * @param data
-     * @return 
-     */
-     public boolean eliminarHijo(String data) {
-            for (int i = 0; i < numHijos; i++) {
-                if (hijos[i].getData().equals(data)) {
-                    for (int j = i; j < numHijos - 1; j++) {
-                        hijos[j] = hijos[j + 1];
-                    }
-                    hijos[--numHijos] = null; 
-                    return true;
-                }
-            }
-            return false; 
-        }
+    private NodoArbol hijoIzq;
+    private NodoArbol hijoDer;
     
     /**
      * @return the data
@@ -65,31 +24,65 @@ public class NodoArbol {
     }
 
     /**
-     * @return the numHijos
+     * @return the hijoIzq
      */
-    public int getNumHijos() {
-        return numHijos;
+    public NodoArbol getHijoIzq() {
+        return hijoIzq;
     }
 
     /**
-     * @param numHijos the numHijos to set
+     * @param hijoIzq the hijoIzq to set
      */
-    public void setNumHijos(int numHijos) {
-        this.numHijos = numHijos;
+    public void setHijoIzq(NodoArbol hijoIzq) {
+        this.hijoIzq = hijoIzq;
     }
 
     /**
-     * @return the hijos
+     * @return the hijoDer
      */
-    public NodoArbol[] getHijos() {
-        return hijos;
+    public NodoArbol getHijoDer() {
+        return hijoDer;
     }
 
     /**
-     * @param hijos the hijos to set
+     * @param hijoDer the hijoDer to set
      */
-    public void setHijos(NodoArbol[] hijos) {
-        this.hijos = hijos;
+    public void setHijoDer(NodoArbol hijoDer) {
+        this.hijoDer = hijoDer;
     }
-
+     /**
+      * Agrega un nodo hijo
+      * @param hijo
+      * @return 
+      */
+     public boolean agregarHijo(NodoArbol hijo) {
+        if (this.hijoIzq == null) {
+            this.hijoIzq = hijo;
+            return true;
+        } else if (this.hijoDer == null) {
+            this.hijoDer = hijo;
+            return true;
+        } else {
+            return false; 
+        }
+    }
+     /**
+      * Elimina un nodo hijo
+      * @param data
+      * @return 
+      */
+      public boolean eliminarHijo(Object data) {
+        if (this.hijoIzq != null && this.hijoIzq.getData().equals(data)) {
+            this.hijoIzq = null;
+            return true;
+        } else if (this.hijoDer != null && this.hijoDer.getData().equals(data)) {
+            this.hijoDer = null;
+            return true;
+        }
+        return false;
+    }
+    
+    
 }
+
+   

@@ -36,7 +36,7 @@ public class MetodoHash {
     
     public void borrar(int valor){
        key = valor % hash.length;
-         hash[key].eliminarPorReferencia(valor);
+       hash[key].eliminarPorReferencia(valor);
         
     }
 }

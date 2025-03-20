@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Interfaz;
 
 import org.graphstream.graph.Graph;
@@ -52,19 +49,24 @@ public class mostrarArbol extends javax.swing.JFrame {
         }
 
 
-        // Configurar el estilo de visualización
-        graph.setAttribute("ui.stylesheet", "node { fill-color: green; } edge { fill-color: black; }");
+// Establece las propiedades de visualización
+        graph.setAttribute("ui.stylesheet",
+                "node { size: 15px; text-alignment: under; } "
+                + // Tamaño de los nodos
+                "node.label { fill-color: white; size: 20px; } "
+                + // Color y tamaño de la etiqueta
+                "edge { fill-color: black; }");
 
-//        // Mostrar el grafo
-//        Viewer viewer = new Viewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
-//        viewer.enableAutoLayout();
-//
-//        // Obtener el pipe del viewer para recibir eventos
-//        ViewerPipe pipe = viewer.newViewerPipe();
-//        pipe.addDefaultGraph(graph);
-//
-//        // Mostrar el grafo
-//        viewer.show();;
+        // Ajustar el layout para evitar superposición
+        graph.setAttribute("ui.quality");
+        graph.setAttribute("ui.antialias");
+        graph.setAttribute("ui.layout", "force");
+        graph.setAttribute("ui.layout.force.springLength", 150); // Distancia entre nodos
+        graph.setAttribute("ui.layout.force.springConstant", 0.2); // Constante de resorte
+
+        // Crear un Viewer para mostrar el grafo
+        System.setProperty("org.graphstream.ui", "swing");
+        graph.display();
     }
 
     /**

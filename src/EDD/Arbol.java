@@ -1,5 +1,6 @@
 package EDD;
 
+import Hashtable.ListaEnlazada;
 import MainClass.Pregunta;
 
 /**
@@ -10,6 +11,7 @@ public class Arbol {
 
     private NodoArbol raiz;
     public int size;
+
     public Arbol() {
         this.raiz = null;
         this.size = 0;
@@ -37,22 +39,33 @@ public class Arbol {
      *
      * @param data
      */
-    public void insertar(Object data) {
-        raiz = insertarNodo(raiz, data);
-    this.size += 1;
+    public NodoArbol insertar(Object data, boolean respuesta) {
+        if (this.buscar(data) != null) {
+            if (this.raiz.getData().equals(data)) {
+                return raiz;
+            }
+            return null;
+        }
+        raiz = insertarNodo(raiz, data, respuesta);
+        this.size += 1;
+        return raiz;
     }
 
-    private NodoArbol insertarNodo(NodoArbol nodo, Object data) {
+    private NodoArbol insertarNodo(NodoArbol nodo, Object data, boolean respuesta) {
         if (nodo == null) {
             nodo = new NodoArbol();
             nodo.setData(data);
             return nodo;
+        } else if (nodo.getData().equals(data)) {
+            return nodo;
         }
 
-        if (nodo.getHijoIzq() == null) {
-            nodo.setHijoIzq(insertarNodo(nodo.getHijoIzq(), data));
-        } else if (nodo.getHijoDer() == null) {
-            nodo.setHijoDer(insertarNodo(nodo.getHijoDer(), data));
+        if (!respuesta) {
+//            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            nodo.setHijoIzq(insertarNodo(nodo.getHijoIzq(), data, respuesta));
+        } else if (respuesta) {
+            nodo.setHijoDer(insertarNodo(nodo.getHijoDer(), data, respuesta));
+//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         } else {
             System.out.println("No se puede insertar: el nodo ya tiene dos hijos.");
         }
@@ -66,18 +79,24 @@ public class Arbol {
      * @param data
      * @return
      */
-    public boolean buscar(Object data) {
+    public NodoArbol buscar(Object data) {
         return buscarNodo(raiz, data);
     }
 
-    private boolean buscarNodo(NodoArbol nodo, Object data) {
+    private NodoArbol buscarNodo(NodoArbol nodo, Object data) {
         if (nodo == null) {
-            return false;
+            return null;
         }
         if (nodo.getData().equals(data)) {
-            return true;
+            return nodo;
         }
-        return buscarNodo(nodo.getHijoIzq(), data) || buscarNodo(nodo.getHijoDer(), data);
+        NodoArbol n = buscarNodo(nodo.getHijoIzq(), data);
+        if (n != null) {
+            return n;
+        }
+        n = buscarNodo(nodo.getHijoDer(), data);
+
+        return n;
     }
 
     /**
@@ -129,15 +148,27 @@ public class Arbol {
     }
 
     public NodoArbol[] preorden() {
-        return preordenRec(raiz, new NodoArbol[size], 0);
-        
+        NodoArbol[] n = preordenRec(raiz, new NodoArbol[size], 0);
+        System.out.println("*******************************************************************************************");
+        for (int i = 0; i < n.length; i++) {
+            if (n[i] != null) {
+                System.out.println(n[i].getData());
+            }
+        }
+        System.out.println("*******************************************************************************************");
+
+        return n;
+
     }
 
     private NodoArbol[] preordenRec(NodoArbol nodo, NodoArbol[] recorrido, int index) {
         if (nodo != null) {
             recorrido[index] = nodo;
-            recorrido = preordenRec(nodo.getHijoIzq(), recorrido, index +1);
-            recorrido = preordenRec(nodo.getHijoDer(), recorrido, index +1);
+            System.out.println(nodo.getData());
+            index += 1;
+            recorrido = preordenRec(nodo.getHijoIzq(), recorrido, index);
+            index += 1;
+            recorrido = preordenRec(nodo.getHijoDer(), recorrido, index);
         }
         return recorrido;
     }
@@ -150,7 +181,7 @@ public class Arbol {
     private void inordenRec(NodoArbol nodo) {
         if (nodo != null) {
             inordenRec(nodo.getHijoIzq());
-            System.out.print(nodo.getData() + " ");
+            System.out.println(nodo.getData() + " ");
             inordenRec(nodo.getHijoDer());
         }
     }
@@ -167,8 +198,6 @@ public class Arbol {
             System.out.print(nodo.getData() + " ");
         }
     }
-    
-    
 
     public String posordenSearch(String clave) {
         return postordenRecSearch(raiz, "", clave);
@@ -190,4 +219,39 @@ public class Arbol {
         }
         return recorrido;
     }
+
+  ListaEnlazada imprimirArbol(NodoArbol nodo, String espacio, ListaEnlazada n, int index) {
+    if (nodo == null) {
+        return n;
+    }
+
+    // Almacenar el nodo actual en el arreglo
+    n.addLast(nodo);
+    index++; // Incrementar el índice después de almacenar el nodo
+
+    // Obtener los datos de los hijos para imprimir
+    String r = "";
+    String i = "";
+    if (nodo.getHijoIzq() != null) {
+        i = nodo.getHijoIzq().getData().toString();
+    }
+    if (nodo.getHijoDer() != null) {
+        r = nodo.getHijoDer().getData().toString();
+    }
+    System.out.println(nodo.getData() + "   HIJOS:  " + i + "///////" + r);
+
+    // Imprimir el subárbol izquierdo
+    n = imprimirArbol(nodo.getHijoIzq(), espacio, n, index);
+    
+    // Imprimir el subárbol derecho
+    n = imprimirArbol(nodo.getHijoDer(), espacio, n, index);
+    
+    return n;
+}
+
+// Método para iniciar la impresión desde la raíz
+public ListaEnlazada imprimir() {
+    ListaEnlazada n = new ListaEnlazada(); // Asegúrate de que 'size' sea el número total de nodos
+    return imprimirArbol(raiz, "", n, 0);
+}
 }

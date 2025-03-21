@@ -52,6 +52,7 @@ public class buscarEspecie extends javax.swing.JFrame {
         buscar.setText("Buscar:");
         jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
 
+        buscaPlanta.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaPlanta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscaPlantaActionPerformed(evt);
@@ -61,6 +62,7 @@ public class buscarEspecie extends javax.swing.JFrame {
 
         buscaHash.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaHash.setText("Busqueda por Hash Table");
+        buscaHash.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscaHash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscaHashActionPerformed(evt);
@@ -70,6 +72,7 @@ public class buscarEspecie extends javax.swing.JFrame {
 
         buscaArbol.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaArbol.setText("Busca por Arbol");
+        buscaArbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscaArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscaArbolActionPerformed(evt);
@@ -81,10 +84,12 @@ public class buscarEspecie extends javax.swing.JFrame {
         jLabel1.setText("Tiempo de busqueda: ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
+        t.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         t.setText("0s");
-        jPanel1.add(t, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        jPanel1.add(t, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 

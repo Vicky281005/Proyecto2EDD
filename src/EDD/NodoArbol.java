@@ -55,15 +55,22 @@ public class NodoArbol {
       * @param hijo
       * @return 
       */
-     public boolean agregarHijo(NodoArbol hijo) {
-        if (this.hijoIzq == null) {
+     public NodoArbol agregarHijo(NodoArbol hijo, boolean valor) {
+         if (this.hijoIzq != null && !valor) {
+            return hijoIzq;
+        } else if (this.hijoDer != null && valor) {
+            return hijoDer;
+        }
+         
+         
+        if (this.hijoIzq == null && !valor) {
             this.hijoIzq = hijo;
-            return true;
-        } else if (this.hijoDer == null) {
+            return hijo;
+        } else if (this.hijoDer == null && valor) {
             this.hijoDer = hijo;
-            return true;
+            return hijo;
         } else {
-            return false; 
+            return null; 
         }
     }
      /**

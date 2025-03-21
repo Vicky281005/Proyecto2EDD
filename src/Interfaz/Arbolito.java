@@ -48,7 +48,7 @@ public class Arbolito extends javax.swing.JFrame {
                 buscaEspecieActionPerformed(evt);
             }
         });
-        jPanel3.add(buscaEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 290, 50));
+        jPanel3.add(buscaEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 300, 50));
 
         mostarArbol.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         mostarArbol.setText("Mostrar Arbol");
@@ -58,7 +58,7 @@ public class Arbolito extends javax.swing.JFrame {
                 mostarArbolActionPerformed(evt);
             }
         });
-        jPanel3.add(mostarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 290, 50));
+        jPanel3.add(mostarArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 300, 50));
 
         determinarEspecie.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         determinarEspecie.setText("Determinar Especie del arbol");
@@ -78,11 +78,11 @@ public class Arbolito extends javax.swing.JFrame {
                 cargaClaveActionPerformed(evt);
             }
         });
-        jPanel3.add(cargaClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 290, 50));
+        jPanel3.add(cargaClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 300, 50));
 
         jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         jLabel1.setText("Clave Dicotomica");
-        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, 30));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, 30));
 
         salirbtn.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         salirbtn.setText("Salir");
@@ -92,22 +92,21 @@ public class Arbolito extends javax.swing.JFrame {
                 salirbtnActionPerformed(evt);
             }
         });
-        jPanel3.add(salirbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 290, 50));
+        jPanel3.add(salirbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 300, 50));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 470));

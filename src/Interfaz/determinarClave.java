@@ -60,6 +60,7 @@ public class determinarClave extends javax.swing.JFrame {
 
         btnSi.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         btnSi.setText("Si");
+        btnSi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiActionPerformed(evt);
@@ -69,6 +70,7 @@ public class determinarClave extends javax.swing.JFrame {
 
         btnNo.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         btnNo.setText("No");
+        btnNo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNoActionPerformed(evt);

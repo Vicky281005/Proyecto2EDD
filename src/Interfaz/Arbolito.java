@@ -42,6 +42,7 @@ public class Arbolito extends javax.swing.JFrame {
 
         buscaEspecie.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         buscaEspecie.setText("Buscar Especie");
+        buscaEspecie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buscaEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscaEspecieActionPerformed(evt);
@@ -51,6 +52,7 @@ public class Arbolito extends javax.swing.JFrame {
 
         mostarArbol.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         mostarArbol.setText("Mostrar Arbol");
+        mostarArbol.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         mostarArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostarArbolActionPerformed(evt);
@@ -60,6 +62,7 @@ public class Arbolito extends javax.swing.JFrame {
 
         determinarEspecie.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         determinarEspecie.setText("Determinar Especie del arbol");
+        determinarEspecie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         determinarEspecie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 determinarEspecieActionPerformed(evt);
@@ -69,6 +72,7 @@ public class Arbolito extends javax.swing.JFrame {
 
         cargaClave.setFont(new java.awt.Font("Book Antiqua", 0, 18)); // NOI18N
         cargaClave.setText("Cargar Clave Dicotomica");
+        cargaClave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cargaClave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cargaClaveActionPerformed(evt);
@@ -82,6 +86,7 @@ public class Arbolito extends javax.swing.JFrame {
 
         salirbtn.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         salirbtn.setText("Salir");
+        salirbtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         salirbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirbtnActionPerformed(evt);

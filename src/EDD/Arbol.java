@@ -72,6 +72,53 @@ public class Arbol {
 
         return nodo;
     }
+    
+    public int getNivelesDelArbol(){
+        if (this.raiz == null) return -1;
+        
+        int levels = 0;
+        NodoArbol aux = this.raiz;
+        while (aux != null){
+            aux = aux.getHijoIzq();            
+            if (aux != null) levels++;
+        }
+        return levels;
+    }
+    
+    private void insertarCaracteristasAux(NodoArbol root, Object data, int maxLevelAllowed, int currentLevel){
+       
+        NodoArbol nuevoNodo = new NodoArbol(data);
+        
+       if(this.raiz == null){
+           this.raiz=nuevoNodo;
+           System.out.println("Tomalo");
+           return;
+       }
+       
+       if (root != null){
+           insertarCaracteristasAux(root.getHijoIzq(), data, maxLevelAllowed, currentLevel+1);
+           insertarCaracteristasAux(root.getHijoDer(), data, maxLevelAllowed, currentLevel+1);
+       }
+       
+       if (root != null && maxLevelAllowed==currentLevel){
+                root.setHijoDer(nuevoNodo);
+                root.setHijoIzq(nuevoNodo);               
+       }
+    }
+    
+    public void insertarCaracteristicas(ListaEnlazada caracteristicas){
+        Nodo caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
+        
+        int contador = 0;
+        while (contador < 2){
+           String data = String.valueOf(caracteristicaTomada.getData());
+            int nivelesDeArbol = this.getNivelesDelArbol();
+            this.insertarCaracteristasAux(raiz, data, nivelesDeArbol, 0);
+            caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
+            contador++;
+        }
+        
+    }
 
     /**
      * Busca un nodo en el arbol
@@ -252,6 +299,10 @@ public class Arbol {
 // Método para iniciar la impresión desde la raíz
 public ListaEnlazada imprimir() {
     ListaEnlazada n = new ListaEnlazada(); // Asegúrate de que 'size' sea el número total de nodos
+    System.out.println("raiz");
+    System.out.println(this.raiz.getData());
+    System.out.println(this.raiz.getHijoIzq().getData());
+    System.out.println(this.raiz.getHijoDer().getData());
     return imprimirArbol(raiz, "", n, 0);
 }
 }

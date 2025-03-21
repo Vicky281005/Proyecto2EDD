@@ -35,6 +35,8 @@ public class mostrarArbol extends javax.swing.JFrame {
     Node first = null;
     ListaEnlazada aux = arbol.imprimir();
     Nodo aux2 = aux.getpFirst();
+        System.out.println("TAMANIO   NNNNNN ");
+        System.out.println(aux.getSize());
 
     // Agregar nodos al grafo
     while (aux2 != null) {
@@ -82,19 +84,24 @@ public class mostrarArbol extends javax.swing.JFrame {
         }
         aux2 = aux2.getpNext();
     }
+    
+    
+// COLORES --------------------------------
 
-    // Establece las propiedades de visualización
-    graph.setAttribute("ui.stylesheet",
-        "node { size: 15px; text-alignment: under; fill-color: blue; } " + // Cambia el color de fondo de los nodos
-        "node.label { fill-color: red; size: 30px; } " + // Cambia el color y tamaño de la etiqueta
-        "edge { fill-color: black; }");
-first.setAttribute("ui.fill-color", "red");
-    // Ajustar el layout para evitar superposición
-    graph.setAttribute("ui.quality");
-    graph.setAttribute("ui.antialias");
-    graph.setAttribute("ui.layout", "force");
-    graph.setAttribute("ui.layout.force.springLength", 150); // Distancia entre nodos
-    graph.setAttribute("ui.layout.force.springConstant", 0.2); // Constante de resorte
+//    // Establece las propiedades de visualización
+//    graph.setAttribute("ui.stylesheet",
+//        "node { size: 15px; text-alignment: under; fill-color: blue; } " + // Cambia el color de fondo de los nodos
+//        "node.label { fill-color: red; size: 30px; } " + // Cambia el color y tamaño de la etiqueta
+//        "edge { fill-color: black; }");
+//first.setAttribute("ui.fill-color", "red");
+//    // Ajustar el layout para evitar superposición
+//    graph.setAttribute("ui.quality");
+//    graph.setAttribute("ui.antialias");
+//    graph.setAttribute("ui.layout", "force");
+//    graph.setAttribute("ui.layout.force.springLength", 150); // Distancia entre nodos
+//    graph.setAttribute("ui.layout.force.springConstant", 0.2); // Constante de resorte
+
+// --------------------------------------------------
 
     // Crear un Viewer para mostrar el grafo
     System.setProperty("org.graphstream.ui", "swing");

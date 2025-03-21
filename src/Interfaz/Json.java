@@ -2,6 +2,7 @@ package Interfaz;
 
 import EDD.Arbol;
 import EDD.NodoArbol;
+import Hashtable.ListaEnlazada;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -34,62 +35,59 @@ public class Json {
                 listaEspecies = claveValor.getValue().getAsJsonArray();
                 break;
             }
+            System.out.println("lest go");
+            ListaEnlazada clavesDelJson = new ListaEnlazada();
+            ListaEnlazada valoresDelJsonSinRepeticion = new ListaEnlazada();
+            
             for (var objectoEspecie : listaEspecies) {
                 var listaEspecieClaveValor = objectoEspecie.getAsJsonObject().entrySet();
                 for (var especieClaveValor : listaEspecieClaveValor) {
                     JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
+                    
                     System.out.println(especieClaveValor.getKey());
+                    clavesDelJson.addLast(especieClaveValor.getKey());
+                    
+                    System.out.println("------------------------------------");
+                    System.out.println(listaPreguntas);
                     String key = "";
+                    
+                    
                     boolean value = false;
                     NodoArbol padre = null;
 
                     for (var preguntaObjeto : listaPreguntas) {
-                        System.out.println(preguntaObjeto);
-                        for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
-                            System.out.println(preguntaClaveValor);
-                            boolean r = false;
-                            if (preguntaClaveValor.getValue().toString().trim().equals("true")) {
-                                r = true;
-//                                System.out.println("***********************************************************************************");
-                            }
-                            if (padre != null) {
-                                NodoArbol nuevo = new NodoArbol();
-                                nuevo.setData(preguntaClaveValor.getKey());
-                                System.out.println(" --------> " + preguntaClaveValor.getKey() + " ES HIJO " + value + " DE " + padre.getData());
-                                arbol.size += 1;
-
-                                padre = padre.agregarHijo(nuevo, value);
-//                                System.out.println(" --------> " + preguntaClaveValor.getKey() + " ES HIJO " + value + " DE " + padre.getData());
-
-                            } else {
-                                padre = arbol.insertar(preguntaClaveValor.getKey(), value);
-                            }
-                            key = preguntaClaveValor.getKey();
-                            value = r;
-                            System.out.println("|" + r + "|");
+//                        System.out.println(preguntaObjeto);
+                        for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {            
+                            valoresDelJsonSinRepeticion.addLastIfItsNotInList(preguntaClaveValor.getKey());
                         }
-
                     }
-                    NodoArbol nuevo = new NodoArbol();
-                    if (arbol.buscar(especieClaveValor.getKey()) == null) {
-                        nuevo.setData(especieClaveValor.getKey());
-                        try {
-                            padre.agregarHijo(nuevo, value);
-                            arbol.size += 1;
-                            System.out.println(" --------> " + especieClaveValor.getKey() + " ES HIJO " + value + " DE " + key);
-
-                        } catch (Exception e) {
-                            System.out.println("                                                                    --------> " + especieClaveValor.getKey() + " ES HIJO " + value + " DE " + key);
-
-                        }
-//                        System.out.println(" --------> " + especieClaveValor.getKey() + " ES HIJO " + value + " DE " + key);
-                    }
+                    
+//                    NodoArbol nuevo = new NodoArbol();
+//                    if (arbol.buscar(especieClaveValor.getKey()) == null) {
+//                        nuevo.setData(especieClaveValor.getKey());
+//                        try {
+//                            padre.agregarHijo(nuevo, value);
+//                            arbol.size += 1;
+////                            System.out.println(" --------> " + especieClaveValor.getKey() + " ES HIJO " + value + " DE " + key);
+//
+//                        } catch (Exception e) {
+////                            System.out.println("                                                                    --------> " + especieClaveValor.getKey() + " ES HIJO " + value + " DE " + key);
+//
+//                        }
+////                        System.out.println(" --------> " + especieClaveValor.getKey() + " ES HIJO " + value + " DE " + key);
+//                    }
 
                 }
 
             }
+            
+            
+            
+            
+            arbol.insertarCaracteristicas(valoresDelJsonSinRepeticion);
 
         }
+        
         arbol.imprimir();
         mostrarArbol m = new mostrarArbol(arbol);
         m.setVisible(true);

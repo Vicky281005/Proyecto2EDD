@@ -169,6 +169,16 @@ public class ListaEnlazada<T> {
             return false;
         }
     }
+    public Nodo eliminarYTomarpFirst() {
+        Nodo aux = pFirst;
+        
+        if (!this.isEmpty()) {
+            pFirst = pFirst.getpNext();
+            size--;
+        } 
+        
+        return aux;
+    }
 
 /**
  * Método para eliminar dato ubicado al final
@@ -354,6 +364,24 @@ public class ListaEnlazada<T> {
 
         } else {
             JOptionPane.showMessageDialog(null, "La lista esta vacia");
+        }
+    }
+    
+    public boolean isNotInList(T data) {
+        Nodo aux = this.pFirst;
+        while (aux != null) {
+            if (aux.getData().equals(data)){
+                return false;
+            }
+            aux = aux.getpNext();
+        }
+        System.out.println("Agregado papu ////////////////////////////////////////// / / / / / / / / / / / /");
+        return true;
+    }
+    
+    public void addLastIfItsNotInList(T data) {
+        if (this.isNotInList(data)){
+            this.addLast(data);
         }
     }
 

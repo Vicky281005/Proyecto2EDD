@@ -8,6 +8,13 @@ public class NodoArbol {
     private Object data;
     private NodoArbol hijoIzq;
     private NodoArbol hijoDer;
+    private NodoArbol papa;
+    
+    public NodoArbol (){
+    }
+    public NodoArbol (Object data){
+        this.data = data;
+    }
     
     /**
      * @return the data
@@ -44,6 +51,14 @@ public class NodoArbol {
         return hijoDer;
     }
 
+    public NodoArbol getPapa() {
+        return papa;
+    }
+
+    public void setPapa(NodoArbol papa) {
+        this.papa = papa;
+    }
+    
     /**
      * @param hijoDer the hijoDer to set
      */

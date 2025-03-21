@@ -2,6 +2,7 @@ package EDD;
 
 import Hashtable.ListaEnlazada;
 import MainClass.Pregunta;
+import java.util.Random;
 
 /**
  *
@@ -85,7 +86,52 @@ public class Arbol {
         return levels;
     }
     
-    private void insertarCaracteristasAux(NodoArbol root, Object data, int maxLevelAllowed, int currentLevel){
+    public void insertarCaracteristasAux(NodoArbol root, Object data, int maxLevelAllowed) {
+    NodoArbol nuevoNodo = new NodoArbol(data);
+    
+    // Si el árbol está vacío, establecer el nuevo nodo como raíz
+    if (this.raiz == null) {
+        this.raiz = nuevoNodo;
+        System.out.println("Tomalo");
+        return;
+    }
+
+    // Estructura de datos para manejar el recorrido por niveles
+    Cola cola = new Cola();
+    Cola niveles = new Cola(); // Para llevar seguimiento del nivel actual
+
+    cola.insert(root); // Añadir la raíz a la cola
+    niveles.insert(0); // Nivel inicial de la raíz
+
+    while (!cola.isEmpty()) {
+        NodoArbol actual = (NodoArbol) cola.delete(); // Extraer el nodo actual
+        int nivelActual = Integer.valueOf(niveles.delete().toString()); // Extraer el nivel actual
+
+        // Si alcanzamos el nivel máximo, insertar los nuevos hijos
+        if (nivelActual == maxLevelAllowed) {
+            if (actual.getHijoIzq() == null) {
+                actual.setHijoIzq(nuevoNodo); // Asignar como hijo izquierdo
+            }
+            if (actual.getHijoDer() == null) {
+                actual.setHijoDer(nuevoNodo); // Asignar como hijo derecho
+            }
+            System.out.println("Nodos añadidos en nivel " + maxLevelAllowed);
+            continue;
+        }
+
+        // Continuar recorriendo los hijos, si existen
+        if (actual.getHijoIzq() != null) {
+            cola.insert(actual.getHijoIzq());
+            niveles.insert(nivelActual + 1); // Incrementar el nivel
+        }
+        if (actual.getHijoDer() != null) {
+            cola.insert(actual.getHijoDer());
+            niveles.insert(nivelActual + 1); // Incrementar el nivel
+        }
+    }
+}
+
+    private void insertarCaracteristasGrafoAux(NodoArbol root, Object data, int maxLevelAllowed, int currentLevel, ListaEnlazada ids){
        
         NodoArbol nuevoNodo = new NodoArbol(data);
         
@@ -96,24 +142,50 @@ public class Arbol {
        }
        
        if (root != null){
-           insertarCaracteristasAux(root.getHijoIzq(), data, maxLevelAllowed, currentLevel+1);
-           insertarCaracteristasAux(root.getHijoDer(), data, maxLevelAllowed, currentLevel+1);
+           insertarCaracteristasGrafoAux(root.getHijoIzq(), data, maxLevelAllowed, currentLevel+1, ids);
+           insertarCaracteristasGrafoAux(root.getHijoDer(), data, maxLevelAllowed, currentLevel+1, ids);
        }
        
        if (root != null && maxLevelAllowed==currentLevel){
+           Random random = new Random();     
+           int id = random.nextInt(1000);
+                while (!ids.isNotInList(String.valueOf(id))){
+                    id = random.nextInt(1000);
+                    
+                } 
+                ids.addLast(String.valueOf(id));
+                nuevoNodo = new NodoArbol(String.valueOf(data)+String.valueOf(id));
+                
+                System.out.println(nuevoNodo.getData());
                 root.setHijoDer(nuevoNodo);
+                
+                while (!ids.isNotInList(String.valueOf(id))){
+                    id = random.nextInt(1000);
+                }           
+                ids.addLast(String.valueOf(id));
+                nuevoNodo = new NodoArbol(String.valueOf(data)+String.valueOf(id));
+               
+                System.out.println(nuevoNodo.getData());
                 root.setHijoIzq(nuevoNodo);               
        }
     }
     
-    public void insertarCaracteristicas(ListaEnlazada caracteristicas){
+    public void insertarCaracteristicas(ListaEnlazada caracteristicas, boolean esParaGrafo){
         Nodo caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
-        
+        ListaEnlazada ids = new ListaEnlazada();
         int contador = 0;
-        while (contador < 2){
+        
+        while (caracteristicaTomada != null){
+            System.out.println(caracteristicas.getSize());
            String data = String.valueOf(caracteristicaTomada.getData());
             int nivelesDeArbol = this.getNivelesDelArbol();
-            this.insertarCaracteristasAux(raiz, data, nivelesDeArbol, 0);
+            if (!esParaGrafo) {
+                this.insertarCaracteristasAux(raiz, data, nivelesDeArbol);
+            } else {
+                this.insertarCaracteristasAux(raiz, data, nivelesDeArbol);
+//                this.insertarCaracteristasGrafoAux(raiz, data, nivelesDeArbol, 0, ids);
+            }
+
             caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
             contador++;
         }

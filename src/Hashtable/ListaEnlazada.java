@@ -375,7 +375,6 @@ public class ListaEnlazada<T> {
             }
             aux = aux.getpNext();
         }
-        System.out.println("Agregado papu ////////////////////////////////////////// / / / / / / / / / / / /");
         return true;
     }
     

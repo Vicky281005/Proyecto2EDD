@@ -21,6 +21,7 @@ public class Json {
 
     public static void cargarJson() throws FileNotFoundException {
         Arbol arbol = new Arbol();
+        Arbol arbolParaGrafo = new Arbol();
         JFileChooser carga = new JFileChooser();
         int captar = carga.showOpenDialog(null);
         if (captar == JFileChooser.APPROVE_OPTION) {
@@ -84,12 +85,17 @@ public class Json {
             
             
             
-            arbol.insertarCaracteristicas(valoresDelJsonSinRepeticion);
+            
+            
+            arbol.insertarCaracteristicas(valoresDelJsonSinRepeticion, false);
+            arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
 
         }
         
-        arbol.imprimir();
-        mostrarArbol m = new mostrarArbol(arbol);
+//        arbol.imprimir();
+        arbolParaGrafo.imprimir();
+
+        mostrarArbol m = new mostrarArbol(arbolParaGrafo);
         m.setVisible(true);
     }
 

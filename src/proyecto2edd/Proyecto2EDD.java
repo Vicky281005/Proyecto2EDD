@@ -17,7 +17,7 @@ public class Proyecto2EDD {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException {
-//        Json.cargarJson();
+        Json.cargarJson();
         Arbolito carga = new Arbolito();
         carga.setVisible(true);
         carga.setLocationRelativeTo(null);

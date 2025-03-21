@@ -35,14 +35,15 @@ public class mostrarArbol extends javax.swing.JFrame {
     Node first = null;
     ListaEnlazada aux = arbol.imprimir();
     Nodo aux2 = aux.getpFirst();
-        System.out.println("TAMANIO   NNNNNN ");
         System.out.println(aux.getSize());
-
+       
+        int counter = 0;
     // Agregar nodos al grafo
     while (aux2 != null) {
         try {
             NodoArbol n = (NodoArbol) aux2.getData();
-            String nodeId = n.getData().toString();
+            String nodeId = n.getData().toString() + String.valueOf(counter);
+            counter++;
             // Agregar el nodo y establecer su etiqueta
             graph.addNode(nodeId).setAttribute("ui.label", nodeId); // Establecer la etiqueta del nodo
             
@@ -65,17 +66,18 @@ public class mostrarArbol extends javax.swing.JFrame {
     aux2 = aux.getpFirst();
 
     // Crear aristas entre nodos
+    counter = 0;
     while (aux2 != null) {
         NodoArbol n = (NodoArbol) aux2.getData();
         if (n != null) {
             String p = n.getData().toString();
             try {
                 if (n.getHijoIzq() != null) {
-                    String i = n.getHijoIzq().getData().toString();
+                    String i = n.getHijoIzq().getData().toString() + String.valueOf(counter);
                     graph.addEdge(p + "-" + i, p, i); // Usar el valor del nodo como identificador
                 }
                 if (n.getHijoDer() != null) {
-                    String r = n.getHijoDer().getData().toString();
+                    String r = n.getHijoDer().getData().toString() + String.valueOf(counter);
                     graph.addEdge(p + "-" + r, p, r); // Usar el valor del nodo como identificador
                 }
             } catch (Exception e) {

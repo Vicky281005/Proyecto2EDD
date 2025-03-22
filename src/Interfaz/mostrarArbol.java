@@ -30,6 +30,11 @@ public class mostrarArbol extends javax.swing.JFrame {
     }
 
     public void mostrar() {
+        if (arbol.getRaiz() == null) {
+            this.dispose();
+            return;
+        }
+        
     Graph graph = new SingleGraph("Árbol");
     boolean isFirstNode = true; // Cambié el nombre de la variable para mayor claridad
     Node first = null;
@@ -54,7 +59,7 @@ public class mostrarArbol extends javax.swing.JFrame {
                 graph.getNode(nodeId).setAttribute("ui.fill-color", "blue"); // O cualquier otro color para los demás nodos
             }
 
-            System.out.println("       NODO AGREGADO --> " + nodeId);
+//            System.out.println("       NODO AGREGADO --> " + nodeId);
         } catch (Exception e) {
 //            e.printStackTrace(); // Imprimir la excepción para depuración
         }

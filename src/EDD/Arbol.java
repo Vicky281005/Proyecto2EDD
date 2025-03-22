@@ -3,6 +3,7 @@ package EDD;
 import Hashtable.ListaEnlazada;
 import MainClass.Pregunta;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -168,17 +169,25 @@ public class Arbol {
      * @param ids una lista enlazada que almacena los identificadores únicos generados para evitar duplicados.
      */
     private void insertarCaracteristasGrafoAux(NodoArbol root, Object data, int maxLevelAllowed, int currentLevel, ListaEnlazada ids){
-       
+         long startTime = System.nanoTime();
+
         NodoArbol nuevoNodo = new NodoArbol(data);
         
        if(this.raiz == null){
            this.raiz=nuevoNodo;
-           System.out.println("Tomalo");
            return;
        }
        
        if (root != null){
+           System.out.println("jola");
            insertarCaracteristasGrafoAux(root.getHijoIzq(), data, maxLevelAllowed, currentLevel+1, ids);
+       long endTime = System.nanoTime();
+        
+       System.out.println(endTime-startTime);
+            if (endTime - startTime > 3103800) {
+                this.volverRaizNula();
+                return;
+            }
            insertarCaracteristasGrafoAux(root.getHijoDer(), data, maxLevelAllowed, currentLevel+1, ids);
        }
        
@@ -204,6 +213,7 @@ public class Arbol {
                 System.out.println(nuevoNodo.getData());
                 root.setHijoIzq(nuevoNodo);               
        }
+       
     }
     
     /**
@@ -228,15 +238,28 @@ public class Arbol {
            String data = String.valueOf(caracteristicaTomada.getData());
             int nivelesDeArbol = this.getNivelesDelArbol();
             if (!esParaGrafo) {
+                JOptionPane.showMessageDialog(null, "YA entre");
                 this.insertarCaracteristasAux(raiz, data, nivelesDeArbol);
             } else {
                 this.insertarCaracteristasGrafoAux(raiz, data, nivelesDeArbol, 0, ids);
+                System.out.println("CARACTERISTICA TOMADA");
+                System.out.println(caracteristicaTomada);
+                
 //                this.insertarCaracteristasGrafoAux(raiz, data, nivelesDeArbol, 0, ids);
             }
 
             caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
             contador++;
+            if (this.raiz == null) {
+                    JOptionPane.showMessageDialog(null, "Arbol muy grande para ser mostrado completo");
+                    caracteristicaTomada = null;
+                    caracteristicas = null;
+                    break;
+             }
+            System.out.println("Sali //////////////////////////////////////////////////");
+            
         }
+        
         
     }
 
@@ -281,6 +304,11 @@ public class Arbol {
      */
     public void eliminar(Object data) {
         raiz = eliminarNodo(raiz, data);
+    }
+    
+    public void volverRaizNula() {
+        this.raiz = null;
+        this.size = 0;
     }
 
     
@@ -446,7 +474,7 @@ public class Arbol {
     if (nodo.getHijoDer() != null) {
         r = nodo.getHijoDer().getData().toString();
     }
-    System.out.println(nodo.getData() + "   HIJOS:  " + i + "///////" + r);
+//    System.out.println(nodo.getData() + "   HIJOS:  " + i + "///////" + r);
 
     // Imprimir el subárbol izquierdo
     n = imprimirArbol(nodo.getHijoIzq(), espacio, n, index);
@@ -460,10 +488,6 @@ public class Arbol {
 // Método para iniciar la impresión desde la raíz
 public ListaEnlazada imprimir() {
     ListaEnlazada n = new ListaEnlazada(); // Asegúrate de que 'size' sea el número total de nodos
-    System.out.println("raiz");
-    System.out.println(this.raiz.getData());
-    System.out.println(this.raiz.getHijoIzq().getData());
-    System.out.println(this.raiz.getHijoDer().getData());
     return imprimirArbol(raiz, "", n, 0);
 }
 }

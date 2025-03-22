@@ -1,40 +1,45 @@
 
 package Hashtable;
 
+import EDD.Nodo;
+
 /**
  *
  * @author NITRO V 15
  */
 public class TablaHash {
-    
-    public static void main(String[] args){
-        MetodoHash h = new MetodoHash(7);
-        
-        h.agregar(38);
-    h.agregar(48);
-    h.agregar(98);
-    h.agregar(18);
-    h.agregar(1);
-    h.agregar(25);
-    h.agregar(78);
-    h.agregar(55);
-    h.agregar(16);
-    h.agregar(13);
-    h.agregar(3);
-    h.agregar(63);
-    h.agregar(67);
-    h.agregar(79);
-    h.agregar(75);
-    h.agregar(95);
-    h.agregar(5);
-    
-    h.imprimir();
-    
-    h.borrar(1);
-    h.borrar(3);
-    h.borrar(5);
-    
-    h.imprimir();
+    int key;
+    public ListaEnlazada[] hash; // Declarar sin inicializar todavía
+
+    // Constructor que recibe la cantidad de filas
+    public TablaHash(int filas) {
+        hash = new ListaEnlazada[filas]; // Inicializamos con el tamaño indicado
+        for (int i = 0; i < hash.length; i++) {
+            hash[i] = new ListaEnlazada(); // Inicializamos cada posición con una lista enlazada
+        }
+    }
+
+    public void agregar(int valor) {
+        Nodo<Integer> nuevo = new Nodo<>(valor);
+        nuevo.setData(valor);
+        key = valor % hash.length; // Usamos 'hash.length' para calcular la clave de forma dinámica
+        hash[key].addLast(valor);
     }
     
+    public void imprimir(){
+        System.out.println("Llave");
+        for(int i=0; i<hash.length; i++){
+            System.out.println(i + "\t");
+            hash[i].imprimirLista();
+        }
+    }
+    
+    public void borrar(int valor){
+       key = valor % hash.length;
+       hash[key].eliminarPorReferencia(valor);
+        
+    }
 }
+
+    
+

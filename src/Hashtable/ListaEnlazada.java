@@ -38,24 +38,41 @@ public class ListaEnlazada<T> {
         return pFirst;
     }
 
+    /**
+     * Establece el último nodo de la lista enlazada.
+     *
+     * @param pLast el nodo que se asignará como el último nodo de la lista.
+     */
+
     public void setpLast(Nodo pLast) {
         this.pLast = pLast;
     }
 
+    /**
+     * Obtiene el último nodo de la lista.
+     *
+     * @return el último nodo de la lista.
+     */
     public Nodo getpLast() {
         return pLast;
     }
 
+    /**
+ * Establece el primer nodo de la lista.
+ * 
+ * @param pFirst nodo que será el primero de la lista.
+ */
     public void setpFirst(Nodo pFirst) {
         this.pFirst = pFirst;
     }
 
+    /**
+     * Obtiene el tamaño de la lista.
+     *
+     * @return la cantidad de elementos en la lista.
+     */
     public int getSize() {
         return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
     }
     
     /**
@@ -86,6 +103,11 @@ public class ListaEnlazada<T> {
         size++;
     }
 
+    /**
+     * Agrega un elemento al final de la lista enlazada.
+     *
+     * @param dato el elemento que se insertará al final de la lista.
+     */
  public void addLast(T dato) {
     Nodo<T> n = new Nodo(dato);
     if (isEmpty()) {
@@ -198,7 +220,12 @@ public class ListaEnlazada<T> {
         }
     }
 
-    
+    /**
+     * Imprime los elementos de la lista enlazada en la consola.
+     *
+     * Recorre la lista desde el primer nodo hasta el último, mostrando los
+     * datos de cada nodo en la consola.
+     */
     public void imprimirLista(){
         System.out.println("-----------------------------------");
         Nodo nodo= this.pFirst;
@@ -367,6 +394,13 @@ public class ListaEnlazada<T> {
         }
     }
     
+    /**
+     * Verifica si un dato no está presente en la lista.
+     *
+     * @param data el dato a buscar en la lista.
+     * @return true si el dato no se encuentra en la lista, false en caso
+     * contrario.
+     */
     public boolean isNotInList(T data) {
         Nodo aux = this.pFirst;
         while (aux != null) {
@@ -378,15 +412,21 @@ public class ListaEnlazada<T> {
         return true;
     }
     
+    /**
+     * Agrega un elemento al final de la lista si no está presente en ella.
+     *
+     * @param data el elemento a verificar y, si corresponde, agregar a la
+     * lista.
+     */
     public void addLastIfItsNotInList(T data) {
         if (this.isNotInList(data)){
             this.addLast(data);
         }
     }
 
-/**
- * Destructor
- */
+    /**
+     * Elimina todos los elementos de la lista, dejándola vacía.
+     */
     public void eliminar() {
         pFirst = null;
         size = 0;

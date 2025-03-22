@@ -51,10 +51,20 @@ public class NodoArbol {
         return hijoDer;
     }
 
+    /**
+     * Obtiene el nodo padre en el árbol.
+     *
+     * @return el nodo padre (`papa`).
+     */
     public NodoArbol getPapa() {
         return papa;
     }
 
+    /**
+     * Establece el nodo padre en el árbol.
+     *
+     * @param papa el nodo que será asignado como padre.
+     */
     public void setPapa(NodoArbol papa) {
         this.papa = papa;
     }

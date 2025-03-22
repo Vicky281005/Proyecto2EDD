@@ -78,7 +78,12 @@ public class Json {
         }
     }
 
-    // Método encargado de mostrar el gráfico al presionar el botón correspondiente
+    /**
+     * Muestra un gráfico del árbol si está cargado y no está vacío.
+     *
+     * Si el árbol está vacío o no se ha cargado un archivo JSON, muestra un
+     * mensaje de advertencia o error mediante cuadros de diálogo.
+     */ 
     public static void mostrarGrafico() {
         if (arbolParaGrafo != null) {
             arbolParaGrafo.imprimir();

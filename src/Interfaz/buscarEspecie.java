@@ -42,6 +42,7 @@ public class buscarEspecie extends javax.swing.JFrame {
         t = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -50,7 +51,7 @@ public class buscarEspecie extends javax.swing.JFrame {
 
         buscar.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscar.setText("Buscar:");
-        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, -1, -1));
+        jPanel1.add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, -1, -1));
 
         buscaPlanta.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaPlanta.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +59,7 @@ public class buscarEspecie extends javax.swing.JFrame {
                 buscaPlantaActionPerformed(evt);
             }
         });
-        jPanel1.add(buscaPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 140, -1));
+        jPanel1.add(buscaPlanta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 140, -1));
 
         buscaHash.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaHash.setText("Busqueda por Hash Table");
@@ -68,7 +69,7 @@ public class buscarEspecie extends javax.swing.JFrame {
                 buscaHashActionPerformed(evt);
             }
         });
-        jPanel1.add(buscaHash, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
+        jPanel1.add(buscaHash, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         buscaArbol.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         buscaArbol.setText("Busca por Arbol");
@@ -78,24 +79,32 @@ public class buscarEspecie extends javax.swing.JFrame {
                 buscaArbolActionPerformed(evt);
             }
         });
-        jPanel1.add(buscaArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, -1, -1));
+        jPanel1.add(buscaArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 180, -1));
 
         jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 12)); // NOI18N
         jLabel1.setText("Tiempo de busqueda: ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         t.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         t.setText("0s");
-        jPanel1.add(t, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, -1, -1));
+        jPanel1.add(t, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, -1, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 490, 280));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 540));
+        jButton1.setText("Volver al inicio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,6 +153,13 @@ public class buscarEspecie extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscaArbolActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Arbolito arbolito= new Arbolito();
+      arbolito.setVisible(true);
+      arbolito.setLocationRelativeTo(null);
+      this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -184,6 +200,7 @@ public class buscarEspecie extends javax.swing.JFrame {
     private javax.swing.JButton buscaHash;
     private javax.swing.JTextField buscaPlanta;
     private javax.swing.JLabel buscar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

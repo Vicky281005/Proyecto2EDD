@@ -137,10 +137,11 @@ public class Arbolito extends javax.swing.JFrame {
     }//GEN-LAST:event_determinarEspecieActionPerformed
 
     private void mostarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostarArbolActionPerformed
-        mostrarArbol mostrar = new mostrarArbol(arbol);
-        mostrar.setLocationRelativeTo(null);
-        mostrar.setVisible(true);
-        this.dispose();
+       Json.mostrarGrafico();
+        //mostrarArbol mostrar = new mostrarArbol(arbol);
+        //mostrar.setLocationRelativeTo(null);
+        //mostrar.setVisible(true);
+        //this.dispose();
     }//GEN-LAST:event_mostarArbolActionPerformed
 
     private void buscaEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaEspecieActionPerformed

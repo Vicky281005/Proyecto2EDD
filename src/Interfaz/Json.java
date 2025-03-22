@@ -23,10 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class Json {
 
-   public static void cargarJson() {
+       private static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
+
+    // Método encargado de cargar el JSON
+    public static void cargarJson() {
         try {
             Arbol arbol = new Arbol();
-            Arbol arbolParaGrafo = new Arbol();
+            arbolParaGrafo = new Arbol(); // Inicializamos el árbol para el gráfico
             JFileChooser carga = new JFileChooser();
             int captar = carga.showOpenDialog(null);
 
@@ -63,14 +66,7 @@ public class Json {
                 arbolParaGrafo = arbol;
                 arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
 
-                arbolParaGrafo.imprimir();
-
-                mostrarArbol m = new mostrarArbol(arbolParaGrafo);
-                m.setVisible(true);
-
-                if (arbolParaGrafo.getRaiz() == null) {
-                    m.setVisible(false);
-                }
+                JOptionPane.showMessageDialog(null, "JSON cargado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (FileNotFoundException e) {
@@ -81,5 +77,22 @@ public class Json {
             JOptionPane.showMessageDialog(null, "Error: Ocurrió un problema al leer el archivo JSON.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    // Método encargado de mostrar el gráfico al presionar el botón correspondiente
+    public static void mostrarGrafico() {
+        if (arbolParaGrafo != null) {
+            arbolParaGrafo.imprimir();
+            mostrarArbol m = new mostrarArbol(arbolParaGrafo);
+            m.setVisible(true);
+
+            if (arbolParaGrafo.getRaiz() == null) {
+                m.setVisible(false);
+                JOptionPane.showMessageDialog(null, "No se puede mostrar el gráfico porque el árbol está vacío.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Error: No se ha cargado un archivo JSON aún.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }
+
 

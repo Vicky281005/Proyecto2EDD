@@ -13,14 +13,31 @@ public class Arbol {
     private NodoArbol raiz;
     public int size;
 
+    
+    
+    /**
+     * Constructor por defecto de la clase Arbol. Inicializa un árbol vacío con
+     * la raíz establecida en null y un tamaño de 0.
+     */
     public Arbol() {
         this.raiz = null;
         this.size = 0;
     }
 
+    /**
+     * Obtiene la raíz del árbol.
+     *
+     * @return el nodo raíz del árbol. Si el árbol está vacío, retorna null.
+     */
     public NodoArbol getRaiz() {
         return raiz;
     }
+    
+    /**
+     * Establece el nodo raíz del árbol.
+     *
+     * @param raiz el nodo que se asignará como la nueva raíz del árbol.
+     */
 
     public void setRaiz(NodoArbol raiz) {
         this.raiz = raiz;
@@ -36,22 +53,15 @@ public class Arbol {
     }
 
     /**
-     * Inserta un nodo en el arbol binario
+     * Inserta un nuevo nodo en el árbol de forma recursiva.
      *
-     * @param data
+     * @param nodo el nodo actual del árbol en el que se está realizando la
+     * inserción.
+     * @param data el dato que se insertará en el árbol.
+     * @param respuesta un valor booleano que indica si el nodo debe insertarse
+    *    como hijo izquierdo (false) o hijo derecho (true).
+     * @return el nodo actualizado después de la operación de inserción.
      */
-    public NodoArbol insertar(Object data, boolean respuesta) {
-        if (this.buscar(data) != null) {
-            if (this.raiz.getData().equals(data)) {
-                return raiz;
-            }
-            return null;
-        }
-        raiz = insertarNodo(raiz, data, respuesta);
-        this.size += 1;
-        return raiz;
-    }
-
     private NodoArbol insertarNodo(NodoArbol nodo, Object data, boolean respuesta) {
         if (nodo == null) {
             nodo = new NodoArbol();
@@ -74,6 +84,12 @@ public class Arbol {
         return nodo;
     }
     
+    /**
+     * Calcula el número de niveles en el árbol, basándose en los nodos hijos
+     * izquierdos.
+     *
+     * @return el número de niveles del árbol. Si el árbol está vacío, retorna -1.
+     */
     public int getNivelesDelArbol(){
         if (this.raiz == null) return -1;
         
@@ -86,6 +102,17 @@ public class Arbol {
         return levels;
     }
     
+/**
+ * Inserta un nodo en el árbol de manera controlada por niveles.
+ * Si el árbol está vacío, el nuevo nodo se establece como la raíz. De lo contrario,
+ * el método recorre el árbol por niveles, utilizando estructuras de datos auxiliares
+ * para mantener un seguimiento del nivel actual de cada nodo. Si se alcanza el nivel
+ * máximo permitido, el nuevo nodo se inserta como hijo izquierdo o derecho del nodo actual,
+ * 
+ * @param root el nodo raíz desde el cual comienza el recorrido del árbol.
+ * @param data los datos que se asignarán al nuevo nodo.
+ * @param maxLevelAllowed el número máximo de niveles permitidos en el árbol.
+ */
     public void insertarCaracteristasAux(NodoArbol root, Object data, int maxLevelAllowed) {
     NodoArbol nuevoNodo = new NodoArbol(data);
     
@@ -95,11 +122,10 @@ public class Arbol {
         System.out.println("Tomalo");
         return;
     }
-
     // Estructura de datos para manejar el recorrido por niveles
     Cola cola = new Cola();
     Cola niveles = new Cola(); // Para llevar seguimiento del nivel actual
-
+    
     cola.insert(root); // Añadir la raíz a la cola
     niveles.insert(0); // Nivel inicial de la raíz
 
@@ -131,6 +157,16 @@ public class Arbol {
     }
 }
 
+    /**
+     * Inserta características en el árbol de manera recursiva, gestionando  identificadores únicos y verificando el nivel máximo permitido.
+     *
+     * @param root el nodo raíz desde el cual comienza la inserción.
+     * @param data los datos del nuevo nodo.
+     * @param maxLevelAllowed el número máximo de niveles permitidos en el  árbol. Cuando se alcanza este nivel,
+     * se añaden nodos con identificadores únicos.
+     * @param currentLevel el nivel actual del nodo procesado, utilizado para verificar la profundidad.
+     * @param ids una lista enlazada que almacena los identificadores únicos generados para evitar duplicados.
+     */
     private void insertarCaracteristasGrafoAux(NodoArbol root, Object data, int maxLevelAllowed, int currentLevel, ListaEnlazada ids){
        
         NodoArbol nuevoNodo = new NodoArbol(data);
@@ -164,12 +200,24 @@ public class Arbol {
                 }           
                 ids.addLast(String.valueOf(id));
                 nuevoNodo = new NodoArbol(String.valueOf(data)+String.valueOf(id));
-               
+               System.out.println("?/?/?/?");
                 System.out.println(nuevoNodo.getData());
                 root.setHijoIzq(nuevoNodo);               
        }
     }
     
+    /**
+     * Inserta una lista de características en el árbol, manejando nodos.
+     *
+     * El método recorre la lista de características y las inserta en el árbol
+     * dependiendo del valor del parámetro `esParaGrafo`. Si `esParaGrafo` es
+     * true, utiliza lógica específica para gráficos, asignando identificadores
+     * únicos a los nodos. De lo contrario, realiza una inserción estándar en el
+     * árbol.
+     *
+     * @param caracteristicas una lista enlazada de características a insertar en el árbol.
+     * @param esParaGrafo un valor booleano que indica si las inserciones son específicas para un grafo (true) o para un árbol (false).
+     */
     public void insertarCaracteristicas(ListaEnlazada caracteristicas, boolean esParaGrafo){
         Nodo caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
         ListaEnlazada ids = new ListaEnlazada();
@@ -182,7 +230,7 @@ public class Arbol {
             if (!esParaGrafo) {
                 this.insertarCaracteristasAux(raiz, data, nivelesDeArbol);
             } else {
-                this.insertarCaracteristasAux(raiz, data, nivelesDeArbol);
+                this.insertarCaracteristasGrafoAux(raiz, data, nivelesDeArbol, 0, ids);
 //                this.insertarCaracteristasGrafoAux(raiz, data, nivelesDeArbol, 0, ids);
             }
 
@@ -202,6 +250,14 @@ public class Arbol {
         return buscarNodo(raiz, data);
     }
 
+    
+    /**
+     * Busca de manera recursiva un nodo en el árbol que contenga el dato especificado.
+     *
+     * @param nodo el nodo desde el cual comienza la búsqueda.
+     * @param data el dato que se busca en el árbol.
+     * @return el nodo que contiene los datos especificados, o null si no se encuentra.
+     */
     private NodoArbol buscarNodo(NodoArbol nodo, Object data) {
         if (nodo == null) {
             return null;
@@ -227,6 +283,20 @@ public class Arbol {
         raiz = eliminarNodo(raiz, data);
     }
 
+    
+    /**
+     * Elimina un nodo del árbol de manera recursiva según los datos especificados.
+     *
+     * Este método maneja tres casos principales para el nodo a eliminar: 
+     * 1. Si el nodo no tiene hijos, simplemente se elimina retornando null. 
+     * 2. Si el nodo tiene un solo hijo (izquierdo o derecho), se reemplaza por ese hijo.
+     * 3. Si el nodo tiene dos hijos, se busca el valor mínimo del subárbol derecho, se 
+     * reemplaza el valor del nodo actual con el valor mínimo, y  luego se elimina el nodo que contenía el valor mínimo.
+     *
+     * @param nodo el nodo actual desde el que se realiza la búsqueda y eliminación.
+     * @param data el dato del nodo que se desea eliminar.
+     * @return el nodo actualizado después de la operación de eliminación.
+     */
     private NodoArbol eliminarNodo(NodoArbol nodo, Object data) {
         if (nodo == null) {
             return null;
@@ -254,11 +324,12 @@ public class Arbol {
     }
 
     /**
-     * Metodo de recorrido de los arboles
-     *
-     * @param nodo
-     * @return
-     */
+ * Encuentra el valor mínimo en el subárbol proporcionado.
+ * Este método recorre los nodos hijos izquierdos de manera iterativa
+ * hasta alcanzar el nodo más bajo (sin hijo izquierdo).
+ * @param nodo el nodo raíz del subárbol en el cual se realizará la búsqueda.
+ * @return el valor mínimo contenido en el nodo más bajo del subárbol.
+ */
     private Object encontrarMin(NodoArbol nodo) {
         while (nodo.getHijoIzq() != null) {
             nodo = nodo.getHijoIzq();
@@ -266,6 +337,14 @@ public class Arbol {
         return nodo.getData();
     }
 
+    /**
+     * Realiza un recorrido en preorden del árbol y retorna un arreglo con los nodos visitados en ese orden.
+     *
+     * Este método utiliza un método auxiliar recursivo (`preordenRec`) para
+     * recopilar los nodos del árbol en el orden de preorden. 
+     * @return un arreglo de nodos que contiene los nodos del
+     * árbol en el orden de preorden. 
+     */
     public NodoArbol[] preorden() {
         NodoArbol[] n = preordenRec(raiz, new NodoArbol[size], 0);
         System.out.println("*******************************************************************************************");
@@ -275,11 +354,21 @@ public class Arbol {
             }
         }
         System.out.println("*******************************************************************************************");
-
         return n;
-
     }
 
+    
+    /**
+     * Método auxiliar recursivo para realizar un recorrido en preorden en el árbol.
+     * Este método se utiliza internamente para llenar un arreglo con los nodos
+     * del árbol en el orden de preorden. Actualiza el índice en cada llamada
+     * recursiva para posicionar los nodos correctamente en el arreglo.
+     *
+     * @param nodo el nodo actual del árbol que se está procesando. Puede ser  null.
+     * @param recorrido un arreglo de nodos que almacenará los nodos en el orden de preorden.
+     * @param index la posición actual en el arreglo donde se debe colocar el  nodo procesado.
+     * @return el arreglo actualizado con los nodos en orden de preorden.
+     */
     private NodoArbol[] preordenRec(NodoArbol nodo, NodoArbol[] recorrido, int index) {
         if (nodo != null) {
             recorrido[index] = nodo;

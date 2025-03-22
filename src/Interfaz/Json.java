@@ -86,9 +86,9 @@ public class Json {
             
             
             
-            
-            arbol.insertarCaracteristicas(valoresDelJsonSinRepeticion, false);
+            arbolParaGrafo = arbol;
             arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
+            arbol.insertarCaracteristicas(valoresDelJsonSinRepeticion, false);
 
         }
         

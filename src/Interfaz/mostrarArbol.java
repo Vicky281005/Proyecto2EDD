@@ -31,10 +31,9 @@ public class mostrarArbol extends javax.swing.JFrame {
 
     public void mostrar() {
         if (arbol.getRaiz() == null) {
-            this.dispose();
             return;
         }
-        
+
     Graph graph = new SingleGraph("Árbol");
     boolean isFirstNode = true; // Cambié el nombre de la variable para mayor claridad
     Node first = null;

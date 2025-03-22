@@ -97,6 +97,10 @@ public class Json {
 
         mostrarArbol m = new mostrarArbol(arbolParaGrafo);
         m.setVisible(true);
+        
+        if (arbolParaGrafo.getRaiz() == null){
+            m.setVisible(false);
+        }
     }
 
 }

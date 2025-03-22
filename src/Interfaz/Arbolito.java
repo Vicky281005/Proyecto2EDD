@@ -2,6 +2,9 @@
 package Interfaz;
 
 import EDD.Arbol;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -120,10 +123,15 @@ public class Arbolito extends javax.swing.JFrame {
     }//GEN-LAST:event_salirbtnActionPerformed
 
     private void cargaClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaClaveActionPerformed
-        cargarClave carga = new cargarClave();
-        carga.setLocationRelativeTo(null);
-        carga.setVisible(true);
-        this.dispose();
+        try {
+            Json.cargarJson();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Arbolito.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        cargarClave carga = new cargarClave();
+//        carga.setLocationRelativeTo(null);
+//        carga.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_cargaClaveActionPerformed
 
     private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed

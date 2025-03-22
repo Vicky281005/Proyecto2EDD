@@ -118,7 +118,7 @@ public class Arbolito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void salirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbtnActionPerformed
-        JOptionPane.showMessageDialog(null, "Gracias por participar");
+        JOptionPane.showMessageDialog(null, "      Gracias por participar :D ");
         this.dispose();
     }//GEN-LAST:event_salirbtnActionPerformed
 

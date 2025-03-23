@@ -18,6 +18,7 @@ public class ListaEnlazada<T> {
      */
     public ListaEnlazada() {
         this.pFirst = this.pLast = null;
+        this.size = 0;
     }
 
     /**

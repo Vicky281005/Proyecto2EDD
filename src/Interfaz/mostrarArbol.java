@@ -89,6 +89,7 @@ public class mostrarArbol extends javax.swing.JFrame {
     }
     
     
+    
 // COLORES --------------------------------
 
 //    // Establece las propiedades de visualización

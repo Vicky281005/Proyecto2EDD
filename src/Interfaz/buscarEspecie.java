@@ -6,6 +6,9 @@ package Interfaz;
 
 import EDD.Arbol;
 import EDD.Nodo;
+import Hashtable.ListaEnlazada;
+import Hashtable.TablaHash;
+
 //import Hashtable.Hashtable;
 
 /**

@@ -1,6 +1,7 @@
 package Interfaz;
 
 import EDD.Arbol;
+import EDD.Nodo;
 import EDD.NodoArbol;
 import Hashtable.ListaEnlazada;
 import com.google.gson.JsonArray;
@@ -22,9 +23,25 @@ import javax.swing.JOptionPane;
  * @author jmmor
  */
 public class Json {
-
-       public static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
-
+//     public static ListaEnlazada valoresDelJsonSinRepeticionCopia;
+     public  static JsonArray listaEspecies;   
+     public static ListaEnlazada clavesDelJson;
+     public static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
+       
+//     public static void obtenerListaClaveValorJson(){
+//          Nodo aux = valoresDelJsonSinRepeticionCopia.getpFirst();
+//          
+//          while (aux != null){
+//               String valorDelJson = String.valueOf(aux.getData());
+//               
+//               int seleccion = JOptionPane.showConfirmDialog(null, "¿Quieres continuar?", "Confirmación", JOptionPane.YES_NO_OPTION);
+//               boolean continuar = (seleccion == JOptionPane.YES_OPTION);
+//               JOptionPane.showMessageDialog(null, "hola");
+//
+//               System.out.println(seleccion);
+//               
+//           }
+//       }
     // Método encargado de cargar el JSON
     public static void cargarJson() {
         try {
@@ -39,13 +56,13 @@ public class Json {
                 JsonElement elemento = parser.parse(lector);
                 JsonObject objectoRaiz = elemento.getAsJsonObject();
 
-                JsonArray listaEspecies = null;
+                listaEspecies = null;
                 for (var claveValor : objectoRaiz.entrySet()) {
                     listaEspecies = claveValor.getValue().getAsJsonArray();
                     break;
                 }
 
-                ListaEnlazada clavesDelJson = new ListaEnlazada();
+                clavesDelJson = new ListaEnlazada();
                 ListaEnlazada valoresDelJsonSinRepeticion = new ListaEnlazada();
 
                 for (var objectoEspecie : listaEspecies) {
@@ -53,16 +70,22 @@ public class Json {
                     for (var especieClaveValor : listaEspecieClaveValor) {
                         JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
                         clavesDelJson.addLast(especieClaveValor.getKey());
+//                        JOptionPane.showMessageDialog(null, especieClaveValor.getKey());
+//                        JOptionPane.showMessageDialog(null, listaPreguntas);
 
                         for (var preguntaObjeto : listaPreguntas) {
                             for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
                                 valoresDelJsonSinRepeticion.addLastIfItsNotInList(preguntaClaveValor.getKey());
+//                                valoresDelJsonSinRepeticionCopia.addLastIfItsNotInList(preguntaClaveValor.getKey());
+//                                JOptionPane.showMessageDialog(null, "A ver ya lo aniadi");
                             }
                         }
                     }
                 }
+                
 
                 arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
+//                Json.obtenerListaClaveValorJson();
 
                 JOptionPane.showMessageDialog(null, "JSON cargado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }

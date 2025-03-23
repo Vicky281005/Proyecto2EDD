@@ -124,6 +124,7 @@ public class Arbolito extends javax.swing.JFrame {
 
     private void cargaClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaClaveActionPerformed
         Json.cargarJson();//        cargarClave carga = new cargarClave();
+        
 //        carga.setLocationRelativeTo(null);
 //        carga.setVisible(true);
 //        this.dispose();

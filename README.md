@@ -34,6 +34,15 @@ El Diagrama de clases esta ubicado en este enlace: https://miro.com/app/board/uX
 
 Si se presentan problemas al momento de instalar la libreria de GraphStream se puede instalar por el siguiente link: https://graphstream-project.org/download/
 
+
+
+
+
+
+
+
+
+
 Si se presentan problemas al momento de instalar la libreria de gson se puede instalar por el siguiente link: https://mvnrepository.com/artifact/com.google.code.gson/gson
 //La libreria se encuentra en la sección de Tags con el nombre de "gson"
 

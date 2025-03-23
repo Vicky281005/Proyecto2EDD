@@ -1,6 +1,7 @@
 
 package Hashtable;
 
+import EDD.Arbol;
 import EDD.Nodo;
 
 /**
@@ -21,6 +22,10 @@ public class TablaHash {
         for (int i = 0; i < capacidad; i++) {
             tabla[i] = new ListaEnlazada();
         }
+    }
+
+    public TablaHash(Arbol arbolParaGrafo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
    //Getters y Setters
@@ -117,6 +122,10 @@ public class TablaHash {
                 actual = actual.getpNext();
             }
         }
+    }
+
+    public void setVisible(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Clase interna para guardar clave y valor

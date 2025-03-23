@@ -117,8 +117,7 @@ public class buscarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_buscaPlantaActionPerformed
 
     private void buscaHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaHashActionPerformed
-        // TODO add your handling code here:
-
+       
         try {
 
             long startTime = System.nanoTime();

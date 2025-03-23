@@ -98,7 +98,6 @@ public class Json {
             JOptionPane.showMessageDialog(null, "Error: No se ha cargado un archivo JSON aún.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
 }
 
 

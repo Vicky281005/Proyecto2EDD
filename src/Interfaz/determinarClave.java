@@ -21,8 +21,8 @@ public class determinarClave extends javax.swing.JFrame {
     public determinarClave(Arbol arbol) {
         initComponents();
         this.arbol = arbol;
-        Pregunta a = (Pregunta) arbol.getRaiz().getData();
-        this.jLabel2.setText(a.getSinopsis());
+        String a = (String) arbol.getRaiz().getData();
+        this.jLabel2.setText(a);
         this.actual = arbol.getRaiz();
     }
 
@@ -44,6 +44,7 @@ public class determinarClave extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnSi = new javax.swing.JButton();
         btnNo = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,11 +53,11 @@ public class determinarClave extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Book Antiqua", 0, 24)); // NOI18N
         jLabel1.setText("Determinar Especies");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 0, 18)); // NOI18N
         jLabel2.setText("Pregunta 1");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, -1, -1));
 
         btnSi.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         btnSi.setText("Si");
@@ -66,7 +67,7 @@ public class determinarClave extends javax.swing.JFrame {
                 btnSiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        jPanel1.add(btnSi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, -1, -1));
 
         btnNo.setFont(new java.awt.Font("Bookman Old Style", 0, 12)); // NOI18N
         btnNo.setText("No");
@@ -76,9 +77,17 @@ public class determinarClave extends javax.swing.JFrame {
                 btnNoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, -1, -1));
+        jPanel1.add(btnNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 540));
+        jButton1.setText("Volver al inicio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -91,10 +100,11 @@ public class determinarClave extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Su planta es: /n" + actual.getData());
                 return;
             }
-            Pregunta a = (Pregunta) actual.getData();
-            this.jLabel2.setText(a.getSinopsis());
+            String a = (String) actual.getData();
+            this.jLabel2.setText(a);
+            
         } catch (Exception e) {
-
+            System.out.println(e);
         }
     }//GEN-LAST:event_btnSiActionPerformed
 
@@ -108,12 +118,19 @@ public class determinarClave extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Su planta es: /n" + actual.getData());
                 return;
             }
-            Pregunta a = (Pregunta) actual.getData();
-            this.jLabel2.setText(a.getSinopsis());
+            String a = (String) actual.getData();
+            this.jLabel2.setText(a);
         } catch (Exception e) {
-
+            System.out.println(e);
         }
     }//GEN-LAST:event_btnNoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Arbolito arbolito= new Arbolito();
+      arbolito.setVisible(true);
+      arbolito.setLocationRelativeTo(null);
+      this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +170,7 @@ public class determinarClave extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNo;
     private javax.swing.JButton btnSi;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

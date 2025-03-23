@@ -1,6 +1,7 @@
 package Interfaz;
 
 import EDD.Arbol;
+import EDD.Nodo;
 import EDD.NodoArbol;
 import Hashtable.ListaEnlazada;
 import com.google.gson.JsonArray;
@@ -22,14 +23,153 @@ import javax.swing.JOptionPane;
  * @author jmmor
  */
 public class Json {
+     public static ListaEnlazada valoresDelJsonSinRepeticionCopia = new ListaEnlazada();
+     public  static JsonArray listaEspecies;   
+     public static ListaEnlazada clavesDelJson;
+     public static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
+       
+     public static void obtenerListaClaveValorJson(){
+         Nodo aux = valoresDelJsonSinRepeticionCopia.getpFirst();
+         NodoArbol raizParaArbol = new NodoArbol(aux.getData());
+         arbolParaGrafo.volverRaizNula();
+         arbolParaGrafo.setRaiz(raizParaArbol);
+         NodoArbol auxArbol = raizParaArbol;
+         
+         int preguntasRealizadas = 0;
+         
+         Boolean haSidoadivinado = false;
+          while (aux != null && !haSidoadivinado){
+               String valorDelJson = String.valueOf(aux.getData());
+//               NodoArbol auxArbol = new NodoArbol(aux.getData());
+               
+               
+               int seleccion = JOptionPane.showConfirmDialog(null, valorDelJson, "Det si su clave tiene esta caract", JOptionPane.YES_NO_OPTION);
+               
+               boolean esVerdaderaLaRespuestaDelUsuario = (seleccion == JOptionPane.YES_OPTION);
+               preguntasRealizadas++;
+               
+               Boolean especiesMatcheada = false;
+               
+               if (!especiesMatcheada){
+                for (var objectoEspecie : listaEspecies) {
+                     var listaEspecieClaveValor = objectoEspecie.getAsJsonObject().entrySet();
+                     for (var especieClaveValor : listaEspecieClaveValor) {
+                         JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
+                         
+                         
+                         // ------------------------------------------------- modificar valores de clave (agregar valores que faltan a dicha lista de cada clave)
+                         
+                         Nodo auxi = clavesDelJson.getpFirst();
+                         JsonArray nuevoArray = new JsonArray();
 
-       private static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
+                         while (auxi != null) {
 
+                             Boolean seEncuentra = false;
+                             Boolean valorAAgregar = false;
+                             if (String.valueOf(auxi.getData()).equalsIgnoreCase(String.valueOf(especieClaveValor.getKey()))) {
+                                 
+                                 Nodo auxilio = valoresDelJsonSinRepeticionCopia.getpFirst();
+                                 while (auxilio != null){
+                                    for (var preguntaObjeto : listaPreguntas) {
+                                        for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
+                                            if (String.valueOf(auxilio.getData()).equalsIgnoreCase(String.valueOf(preguntaClaveValor.getKey()))) {
+                                                seEncuentra = true;
+                                                valorAAgregar = Boolean.valueOf(preguntaClaveValor.getValue().toString());
+                                            }
+                                        }
+                                    }
+                                    JsonObject nuevoElemento = new JsonObject();
+                                    nuevoElemento.addProperty(String.valueOf(auxilio.getData()), seEncuentra ? valorAAgregar : false);
+                                    nuevoArray.add(nuevoElemento);
+                                    auxilio = auxilio.getpNext();
+                                    seEncuentra = false;
+                                    valorAAgregar = false;
+                                 }
+                                 
+
+                             }
+                             auxi = auxi.getpNext();
+
+                         }
+                         especieClaveValor.setValue(nuevoArray);
+//                         JOptionPane.showMessageDialog(null, especieClaveValor.getKey() + nuevoArray);
+                         // -------------------------------------------------
+ //                        clavesDelJson.addLast(especieClaveValor.getKey());
+                         NodoArbol auxNodoComparativo = arbolParaGrafo.getRaiz();
+                         int largo = listaPreguntas.size();
+                         int contador = 0;
+                         Boolean ultimaPregunta = false;
+
+                         if (largo == preguntasRealizadas){     
+                             while (auxNodoComparativo != null) {
+                                 for (var preguntaObjeto : listaPreguntas) {
+                                     for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
+                                         if (auxNodoComparativo == null) continue;
+//                                         JOptionPane.showMessageDialog(null, "// " + preguntaClaveValor.getKey());
+//                                         JOptionPane.showMessageDialog(null, "evaluare " + auxNodoComparativo.getData() + " de " + especieClaveValor.getKey());
+                                         if (!String.valueOf(preguntaClaveValor.getKey()).equalsIgnoreCase(String.valueOf(auxNodoComparativo.getData()))){
+                                              auxNodoComparativo = auxNodoComparativo.getHijoIzq();
+                                              ultimaPregunta = false;
+                                         }
+                                         
+                                        if (String.valueOf(preguntaClaveValor.getKey()).equalsIgnoreCase(String.valueOf(auxNodoComparativo.getData())) ){
+                                             especiesMatcheada = true;
+//                                             JOptionPane.showMessageDialog(null, especieClaveValor.getKey());
+                                             contador++;
+                                             
+                                             if (Boolean.parseBoolean(preguntaClaveValor.getValue().toString())){
+                                                 
+//                                         JOptionPane.showMessageDialog(null, "Nos vamos pa la derecha");
+                                                 auxNodoComparativo = auxNodoComparativo.getHijoDer();
+                                                 ultimaPregunta = true;
+                                             }else{
+//                                         JOptionPane.showMessageDialog(null, "Nos vamos pa la izquierda");
+                                                 auxNodoComparativo = auxNodoComparativo.getHijoIzq();
+                                                 ultimaPregunta = false;
+                                             }
+                                         }
+                                     }
+                                 }
+
+
+                             }
+                         }
+                         
+                         if (contador == largo && ultimaPregunta == esVerdaderaLaRespuestaDelUsuario) {
+                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "TU CARTA ERA ESTA? "+ especieClaveValor.getKey());
+                              haSidoadivinado = (respuestaDeHaSidoadivinado == JOptionPane.YES_OPTION);
+                              
+                              if (haSidoadivinado) {
+                                  JOptionPane.showMessageDialog(null, "Yey soy lo maisimo");
+                              }
+                         }
+ //                         JOptionPane.showMessageDialog(null, "Sali del condicional");
+                     }
+                }
+                   
+               }
+               
+               aux = aux.getpNext();
+               
+               if (aux != null){
+                   
+                   NodoArbol auxDelAuxArbol = new NodoArbol(aux.getData());
+                   
+                   if (esVerdaderaLaRespuestaDelUsuario){
+                        auxArbol.setHijoDer(auxDelAuxArbol);
+                   } else {
+                        auxArbol.setHijoIzq(auxDelAuxArbol);
+                   }
+                   auxArbol = auxDelAuxArbol;
+               }
+               
+               
+           }
+       }
     // Método encargado de cargar el JSON
     public static void cargarJson() {
         try {
-            Arbol arbol = new Arbol();
-            arbolParaGrafo = new Arbol(); // Inicializamos el árbol para el gráfico
+            arbolParaGrafo = new Arbol();
             JFileChooser carga = new JFileChooser();
             int captar = carga.showOpenDialog(null);
 
@@ -40,13 +180,13 @@ public class Json {
                 JsonElement elemento = parser.parse(lector);
                 JsonObject objectoRaiz = elemento.getAsJsonObject();
 
-                JsonArray listaEspecies = null;
+                listaEspecies = null;
                 for (var claveValor : objectoRaiz.entrySet()) {
                     listaEspecies = claveValor.getValue().getAsJsonArray();
                     break;
                 }
 
-                ListaEnlazada clavesDelJson = new ListaEnlazada();
+                clavesDelJson = new ListaEnlazada();
                 ListaEnlazada valoresDelJsonSinRepeticion = new ListaEnlazada();
 
                 for (var objectoEspecie : listaEspecies) {
@@ -54,17 +194,22 @@ public class Json {
                     for (var especieClaveValor : listaEspecieClaveValor) {
                         JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
                         clavesDelJson.addLast(especieClaveValor.getKey());
+//                        JOptionPane.showMessageDialog(null, especieClaveValor.getKey());
+//                        JOptionPane.showMessageDialog(null, listaPreguntas);
 
                         for (var preguntaObjeto : listaPreguntas) {
                             for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
                                 valoresDelJsonSinRepeticion.addLastIfItsNotInList(preguntaClaveValor.getKey());
+                                valoresDelJsonSinRepeticionCopia.addLastIfItsNotInList(preguntaClaveValor.getKey());
+//                                JOptionPane.showMessageDialog(null, "A ver ya lo aniadi");
                             }
                         }
                     }
                 }
+                
 
-                arbolParaGrafo = arbol;
                 arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
+                Json.obtenerListaClaveValorJson();
 
                 JOptionPane.showMessageDialog(null, "JSON cargado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }

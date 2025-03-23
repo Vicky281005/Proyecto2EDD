@@ -245,6 +245,8 @@ public class Arbol {
                 System.out.println("CARACTERISTICA TOMADA");
                 System.out.println(caracteristicaTomada);
                 
+//Tienes que ir insertando y viendo si es True or False, y si llegaste al final de la lista ya no tienes que hacer más preguntas.
+
 //                this.insertarCaracteristasGrafoAux(raiz, data, nivelesDeArbol, 0, ids);
             }
 

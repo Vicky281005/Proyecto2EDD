@@ -43,7 +43,7 @@ public class Json {
 //               NodoArbol auxArbol = new NodoArbol(aux.getData());
                
                
-               int seleccion = JOptionPane.showConfirmDialog(null, valorDelJson, "Det si su clave tiene esta caract", JOptionPane.YES_NO_OPTION);
+               int seleccion = JOptionPane.showConfirmDialog(null, valorDelJson, "Su especie tiene: ", JOptionPane.YES_NO_OPTION);
                
                boolean esVerdaderaLaRespuestaDelUsuario = (seleccion == JOptionPane.YES_OPTION);
                preguntasRealizadas++;
@@ -136,11 +136,14 @@ public class Json {
                          }
                          
                          if (contador == largo && ultimaPregunta == esVerdaderaLaRespuestaDelUsuario) {
-                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "TU CARTA ERA ESTA? "+ especieClaveValor.getKey());
+                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "La especie que buscas es esta? "+ especieClaveValor.getKey());
                               haSidoadivinado = (respuestaDeHaSidoadivinado == JOptionPane.YES_OPTION);
                               
                               if (haSidoadivinado) {
-                                  JOptionPane.showMessageDialog(null, "Yey soy lo maisimo");
+                                  JOptionPane.showMessageDialog(null, "Yei me alegra haberte ayudado ;D ");
+                              }
+                              if (!haSidoadivinado) {
+                                  JOptionPane.showMessageDialog(null, "Lo siento. Intentaré hacerlo mejor la próxima vez");
                               }
                          }
  //                         JOptionPane.showMessageDialog(null, "Sali del condicional");
@@ -209,7 +212,7 @@ public class Json {
                 
 
                 arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
-                Json.obtenerListaClaveValorJson();
+               // Json.obtenerListaClaveValorJson();
 
                 JOptionPane.showMessageDialog(null, "JSON cargado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }

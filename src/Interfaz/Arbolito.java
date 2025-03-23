@@ -131,10 +131,26 @@ public class Arbolito extends javax.swing.JFrame {
     }//GEN-LAST:event_cargaClaveActionPerformed
 
     private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed
-        determinarClave clave = new determinarClave(Json.arbolParaGrafo);
-        clave.setLocationRelativeTo(null);
-        clave.setVisible(true);
-        this.dispose();
+        try {
+            Json.obtenerListaClaveValorJson(); // Intentar ejecutar el método
+        } catch (Exception e) {
+            // Mostrar mensaje personalizado
+            JOptionPane.showMessageDialog(
+                    null,
+                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado.",
+                    "Advertencia",
+                     JOptionPane.WARNING_MESSAGE
+            );
+            // Opcional: Para depuración, imprime la traza del error
+        
+    }
+
+
+
+//        determinarClave clave = new determinarClave(Json.arbolParaGrafo);
+//        clave.setLocationRelativeTo(null);
+//        clave.setVisible(true);
+//        this.dispose();
     }//GEN-LAST:event_determinarEspecieActionPerformed
 
     private void mostarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostarArbolActionPerformed

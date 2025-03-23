@@ -1,7 +1,7 @@
 Bienvenido a nuestro segundo proyecto de Estructura de datos. Integrantes:
 
-Juan Moreira. Ci:30906576
 Maria Victoria Almonte. CI: 31.126.829 
+Juan Moreira. Ci:30906576
 Mishel Monaco. CI: 30.635.512
 
 El proyecto consiste en una clave dicotómica la cual, es una tabla, generalmente en papel, que permite identificar unívocamente una especie a través de una serie de preguntas de sí o no.
@@ -25,8 +25,8 @@ El cual fue realizado en la versión Apache Netbeans IDE 24 y la version 23 del 
 -java.io.File
 -java.io.FileNotFoundException
 -java.io.FileReader
--java.util.Map.Entry // Solo se usa para la estructura del Json
--java.util.random // Solo se usa para generar numeros aleatorios, en si no es un tipo de dato abstacto
+-java.util.Map.Entry // Solo se usa para la estructura del Json.
+-java.util.random // Solo se usa para generar numeros aleatorios, en si no para un tipo de dato abstacto.
 -javax.swing.JFileChooser
 -javax.swing.JOptionPane
 

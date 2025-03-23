@@ -23,13 +23,12 @@ import javax.swing.JOptionPane;
  */
 public class Json {
 
-       private static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
+       public static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
 
     // Método encargado de cargar el JSON
     public static void cargarJson() {
         try {
-            Arbol arbol = new Arbol();
-            arbolParaGrafo = new Arbol(); // Inicializamos el árbol para el gráfico
+            arbolParaGrafo = new Arbol();
             JFileChooser carga = new JFileChooser();
             int captar = carga.showOpenDialog(null);
 
@@ -63,7 +62,6 @@ public class Json {
                     }
                 }
 
-                arbolParaGrafo = arbol;
                 arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
 
                 JOptionPane.showMessageDialog(null, "JSON cargado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author jmmor
  */
 public class Arbolito extends javax.swing.JFrame {
-    Arbol arbol;
+
     /**
      * Creates new form Arbolito
      */
@@ -130,7 +130,7 @@ public class Arbolito extends javax.swing.JFrame {
     }//GEN-LAST:event_cargaClaveActionPerformed
 
     private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed
-        determinarClave clave = new determinarClave(arbol);
+        determinarClave clave = new determinarClave(Json.arbolParaGrafo);
         clave.setLocationRelativeTo(null);
         clave.setVisible(true);
         this.dispose();
@@ -145,7 +145,7 @@ public class Arbolito extends javax.swing.JFrame {
     }//GEN-LAST:event_mostarArbolActionPerformed
 
     private void buscaEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaEspecieActionPerformed
-        buscarEspecie buscar = new buscarEspecie(arbol);
+        buscarEspecie buscar = new buscarEspecie(Json.arbolParaGrafo);
         buscar.setLocationRelativeTo(null);
         buscar.setVisible(true);
         this.dispose();

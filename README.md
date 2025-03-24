@@ -15,6 +15,7 @@ El cual fue realizado en la versión Apache Netbeans IDE 24 y la version 23 del 
 -org.graphstream.graph.Node
 -org.graphstream.ui.view.ViewerPipe
 -org.graphstream.graph.*
+-org.graphstream.graph.implementations.*
 -com.google.gson.JsonArray
 -com.google.gson.JsonElement
 -com.google.gson.JsonIOException
@@ -22,6 +23,7 @@ El cual fue realizado en la versión Apache Netbeans IDE 24 y la version 23 del 
 -com.google.gson.JsonParser
 -com.google.gson.JsonSyntaxException
 -java.awt.HeadlessException
+-java.awt.PopupMenu
 -java.io.File
 -java.io.FileNotFoundException
 -java.io.FileReader
@@ -29,6 +31,7 @@ El cual fue realizado en la versión Apache Netbeans IDE 24 y la version 23 del 
 -java.util.random // Solo se usa para generar numeros aleatorios, en si no para un tipo de dato abstacto.
 -javax.swing.JFileChooser
 -javax.swing.JOptionPane
+-javax.swing.JFrame
 
 El Diagrama de clases esta ubicado en este enlace: https://miro.com/app/board/uXjVIMAaZjQ=/?userEmail=j.moreira@correo.unimet.edu.ve&track=true&utm_source=notification&utm_medium=email&utm_campaign=add-to-board&utm_content=go-to-board&lid=j6d515aeu3iu
 

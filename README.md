@@ -38,3 +38,5 @@ Si se presentan problemas al momento de instalar la libreria de gson se puede in
 //La libreria se encuentra en la sección de Tags con el nombre de "gson"
 
 Instrucciones del Proyecto Clave Dicotómica: https://docs.google.com/document/d/1ZS6w4qN3mc1TUoyA3YAuLtsMLS26x-UUSafH1D87QLM/edit?tab=t.0#heading=h.eeq8llz4f9r
+
+Enlace al repositorio: https://github.com/Vicky281005/Proyecto2EDD.git

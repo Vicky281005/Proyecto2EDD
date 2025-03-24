@@ -142,7 +142,7 @@ public class Json {
                          }
                        
                          if (contador == largo && ultimaPregunta == esVerdaderaLaRespuestaDelUsuario) {
-                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "La especie que buscas es esta? 🤔 "+ especieClaveValor.getKey());
+                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "La especie que buscas es esta? "+ especieClaveValor.getKey());
                               haSidoadivinado = (respuestaDeHaSidoadivinado == JOptionPane.YES_OPTION);
                               
                               if (haSidoadivinado) {

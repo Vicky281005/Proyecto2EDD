@@ -139,25 +139,31 @@ public class buscarEspecie extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscaHashActionPerformed
 
+    
+    /**
+     * Este método realiza los siguientes pasos: - Obtiene el nombre de la
+     * especie a buscar desde el campo de texto asociado. - Calcula el tiempo
+     * empleado para realizar la búsqueda utilizando nanosegundos. - Utiliza el
+     * método `busqueda` de la clase `Json` para obtener las características
+     * asociadas a la especie buscada. - Muestra el tiempo de búsqueda en un
+     * área de texto. - Itera sobre la lista de características obtenida y las
+     * muestra en un área de texto.
+     *
+     * @param evt el evento de acción asociado al botón.
+     */
     private void buscaArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaArbolActionPerformed
        
         String especieABuscar = this.buscaPlanta.getText();
     this.t.setText(" ");
 
-    // Medir el tiempo antes de ejecutar la búsqueda
     long startTime = System.nanoTime();
 
     ListaEnlazada preguntas = Json.busqueda(especieABuscar);
 
-    // Medir el tiempo después de ejecutar la búsqueda
     long endTime = System.nanoTime();
-
-    // Calcular el tiempo transcurrido en nanosegundos
     long elapsedTime = (endTime - startTime);
-
-    // Mostrar el tiempo transcurrido
     this.t.setText( elapsedTime + " Nanosegundos\n");
-
+    
     // Mostrar los resultados de la búsqueda
     Nodo auxiliarLista = preguntas.getpFirst();
     while (auxiliarLista != null) {
@@ -168,6 +174,12 @@ public class buscarEspecie extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buscaArbolActionPerformed
 
+    /**
+     * Este método abre la ventana principal, establece su posición en el centro
+     * de la pantalla y cierra la ventana actual.
+     *
+     * @param evt el evento de acción asociado al botón.
+     */
     private void bontonVolverEnBuscarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bontonVolverEnBuscarEspecieActionPerformed
        Arbolito arbolito= new Arbolito();
       arbolito.setVisible(true);

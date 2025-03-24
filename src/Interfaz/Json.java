@@ -28,8 +28,21 @@ public class Json {
      public static ListaEnlazada clavesDelJson;
      public static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
        
+     
+     /**
+ * Procesa una lista de claves y valores obtenida de un archivo JSON para construir un árbol de decisión.
+ * 
+ * Este método realiza las siguientes tareas:
+ * - Obtiene las claves y valores del archivo JSON previamente cargado.
+ * - Construye un árbol binario basado en las respuestas del usuario mediante cuadros de diálogo.
+ * - Intenta identificar una especie basándose en las respuestas del usuario y las características del JSON.
+ * 
+ * Lógica adicional:
+ * - Maneja las respuestas del usuario para actualizar el árbol de decisión.
+ * - Reestructura el JSON para reflejar las características seleccionadas.
+ */
+
      public static void obtenerListaClaveValorJson(){
-         
          
          Nodo aux = valoresDelJsonSinRepeticionCopia.getpFirst();
          NodoArbol raizParaArbol = new NodoArbol(aux.getData());
@@ -44,8 +57,7 @@ public class Json {
          Boolean haSidoadivinado = false;
           while (aux != null && !haSidoadivinado){
                String valorDelJson = String.valueOf(aux.getData());
-//               NodoArbol auxArbol = new NodoArbol(aux.getData());
-               
+
                
                int seleccion = JOptionPane.showConfirmDialog(null, valorDelJson, "Su especie tiene: ", JOptionPane.YES_NO_OPTION);
                
@@ -60,8 +72,6 @@ public class Json {
                      for (var especieClaveValor : listaEspecieClaveValor) {
                          JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
                          
-                         
-                         // ------------------------------------------------- modificar valores de clave (agregar valores que faltan a dicha lista de cada clave)
                          
                          Nodo auxi = clavesDelJson.getpFirst();
                          JsonArray nuevoArray = new JsonArray();
@@ -96,9 +106,6 @@ public class Json {
 
                          }
                          especieClaveValor.setValue(nuevoArray);
-//                         JOptionPane.showMessageDialog(null, especieClaveValor.getKey() + nuevoArray);
-                         // -------------------------------------------------
- //                        clavesDelJson.addLast(especieClaveValor.getKey());
                          NodoArbol auxNodoComparativo = arbolParaGrafo.getRaiz();
                          int largo = listaPreguntas.size();
                          int contador = 0;
@@ -109,8 +116,6 @@ public class Json {
                                  for (var preguntaObjeto : listaPreguntas) {
                                      for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
                                          if (auxNodoComparativo == null) continue;
-//                                         JOptionPane.showMessageDialog(null, "// " + preguntaClaveValor.getKey());
-//                                         JOptionPane.showMessageDialog(null, "evaluare " + auxNodoComparativo.getData() + " de " + especieClaveValor.getKey());
                                          if (!String.valueOf(preguntaClaveValor.getKey()).equalsIgnoreCase(String.valueOf(auxNodoComparativo.getData()))){
                                               ultimoNodoArbolAux = auxNodoComparativo;
                                               auxNodoComparativo = auxNodoComparativo.getHijoIzq();
@@ -119,7 +124,6 @@ public class Json {
                                          
                                         if (String.valueOf(preguntaClaveValor.getKey()).equalsIgnoreCase(String.valueOf(auxNodoComparativo.getData())) ){
                                              especiesMatcheada = true;
-//                                             JOptionPane.showMessageDialog(null, especieClaveValor.getKey());
                                              contador++;
                                              
                                              if (Boolean.parseBoolean(preguntaClaveValor.getValue().toString())){
@@ -127,7 +131,6 @@ public class Json {
                                                  auxNodoComparativo = auxNodoComparativo.getHijoDer();
                                                  ultimaPregunta = true;
                                              }else{
-//                                         JOptionPane.showMessageDialog(null, "Nos vamos pa la izquierda");
                                                   ultimoNodoArbolAux = auxNodoComparativo;
                                                  auxNodoComparativo = auxNodoComparativo.getHijoIzq();
                                                  ultimaPregunta = false;
@@ -135,11 +138,9 @@ public class Json {
                                          }
                                      }
                                  }
-
-
                              }
                          }
-                         
+                       
                          if (contador == largo && ultimaPregunta == esVerdaderaLaRespuestaDelUsuario) {
                              int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "La especie que buscas es esta? "+ especieClaveValor.getKey());
                               haSidoadivinado = (respuestaDeHaSidoadivinado == JOptionPane.YES_OPTION);
@@ -155,12 +156,11 @@ public class Json {
                                   JOptionPane.showMessageDialog(null, "Lo siento. Intentaré hacerlo mejor la próxima vez");
                               }
                          }
- //                         JOptionPane.showMessageDialog(null, "Sali del condicional");
                      }
                 }
                    
                }
-               
+              
                aux = aux.getpNext();
                
                if (aux != null){

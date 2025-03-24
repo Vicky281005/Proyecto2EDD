@@ -73,11 +73,11 @@ public class Arbol {
         }
 
         if (!respuesta) {
-//            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+
             nodo.setHijoIzq(insertarNodo(nodo.getHijoIzq(), data, respuesta));
         } else if (respuesta) {
             nodo.setHijoDer(insertarNodo(nodo.getHijoDer(), data, respuesta));
-//            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
         } else {
             System.out.println("No se puede insertar: el nodo ya tiene dos hijos.");
         }
@@ -258,11 +258,7 @@ public class Arbol {
                     caracteristicas = null;
                     break;
              }
-            System.out.println("Sali //////////////////////////////////////////////////");
-            
-        }
-        
-        
+        }  
     }
 
     /**

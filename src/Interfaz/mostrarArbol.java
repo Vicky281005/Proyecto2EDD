@@ -22,7 +22,12 @@ public class mostrarArbol extends javax.swing.JFrame {
     static Arbol arbol;
 
     /**
-     * Creates new form mostrarArbol
+     * Constructor para inicializar la ventana de visualización del árbol.
+     *
+     * Inicializa los componentes gráficos y muestra la representación del árbol
+     * proporcionado.
+     *
+     * @param a el árbol que se visualizará.
      */
     public mostrarArbol(Arbol a) {
         initComponents();
@@ -31,6 +36,17 @@ public class mostrarArbol extends javax.swing.JFrame {
 
     }
 
+   
+    /**
+     * Muestra gráficamente el árbol utilizando la librería GraphStream.
+     *
+     * El método genera nodos y aristas basados en los datos del árbol
+     * proporcionado. Resalta el nodo raíz en rojo, mientras que los demás nodos
+     * se muestran en azul. También crea un visor para mostrar el gráfico
+     * interactivo.
+     *
+     * Si el árbol no tiene una raíz, no realiza ninguna acción.
+     */
     public void mostrar() {
         if (arbol.getRaiz() == null) {
             return;
@@ -55,12 +71,11 @@ public class mostrarArbol extends javax.swing.JFrame {
             if (isFirstNode) {
                 first = graph.getNode(nodeId);
                 graph.getNode(nodeId).setAttribute("ui.fill-color", "red");
-                isFirstNode = false; // Cambiar a false después de colorear el primer nodo
+                isFirstNode = false; 
             } else {
-                graph.getNode(nodeId).setAttribute("ui.fill-color", "blue"); // O cualquier otro color para los demás nodos
+                graph.getNode(nodeId).setAttribute("ui.fill-color", "blue"); 
             }
 
-//            System.out.println("       NODO AGREGADO --> " + nodeId);
         } catch (Exception e) {
 //            e.printStackTrace(); // Imprimir la excepción para depuración
         }
@@ -90,34 +105,15 @@ public class mostrarArbol extends javax.swing.JFrame {
         aux2 = aux2.getpNext();
     }
     
-    
-    
-// COLORES --------------------------------
-
-//    // Establece las propiedades de visualización
-//    graph.setAttribute("ui.stylesheet",
-//        "node { size: 15px; text-alignment: under; fill-color: blue; } " + // Cambia el color de fondo de los nodos
-//        "node.label { fill-color: red; size: 30px; } " + // Cambia el color y tamaño de la etiqueta
-//        "edge { fill-color: black; }");
-//first.setAttribute("ui.fill-color", "red");
-//    // Ajustar el layout para evitar superposición
-//    graph.setAttribute("ui.quality");
-//    graph.setAttribute("ui.antialias");
-//    graph.setAttribute("ui.layout", "force");
-//    graph.setAttribute("ui.layout.force.springLength", 150); // Distancia entre nodos
-//    graph.setAttribute("ui.layout.force.springConstant", 0.2); // Constante de resorte
-
-// --------------------------------------------------
-    
-
-
 
     // Crear un Viewer para mostrar el grafo
     System.setProperty("org.graphstream.ui", "swing");
     // Obtén el Viewer directamente desde el grafo
     graph.display().setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
-//    graph.display();
+
 }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

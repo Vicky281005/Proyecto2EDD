@@ -1,10 +1,6 @@
 
 package Interfaz;
 
-import EDD.Arbol;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**

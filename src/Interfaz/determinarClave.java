@@ -16,7 +16,12 @@ public class determinarClave extends javax.swing.JFrame {
     NodoArbol actual;
 
     /**
-     * Creates new form determinarClave
+     * Constructor para inicializar la ventana de determinación de claves.
+     *
+     * Inicializa los componentes gráficos, asigna el árbol proporcionado y
+     * actualiza la interfaz con los datos del nodo raíz del árbol.
+     *
+     * @param arbol el árbol binario que contiene las claves para determinar.
      */
     public determinarClave(Arbol arbol) {
         initComponents();
@@ -26,6 +31,13 @@ public class determinarClave extends javax.swing.JFrame {
         this.actual = arbol.getRaiz();
     }
 
+    /**
+     * Verifica si el nodo actual representa una planta.
+     *
+     * Un nodo se considera una planta si no tiene hijos derecho ni izquierdo.
+     *
+     * @return true si el nodo actual es una planta, false en caso contrario.
+     */
     public boolean esPlanta() {
         return actual.getHijoDer() == null && actual.getHijoIzq() == null;
     }

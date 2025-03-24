@@ -107,7 +107,7 @@ public class buscarEspecie extends javax.swing.JFrame {
         });
         jPanel1.add(bontonVolverEnBuscarEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, -1, -1));
 
-        jLabel2.setText("Si deseas ver graficamente el arbol de recorrido que se realizo para llegar a");
+        jLabel2.setText("Si deseas ver graficamente el  sub arbol de recorrido que se realizo para llegar a");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 450, -1));
 
         jLabel3.setText(" la especie  debe volver al inicio y presionar el botón de mostrar arbol.");

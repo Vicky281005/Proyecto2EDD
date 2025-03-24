@@ -121,7 +121,7 @@ public class Arbolito extends javax.swing.JFrame {
      * @param evt el evento de acción asociado al botón.
      */
     private void salirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbtnActionPerformed
-        JOptionPane.showMessageDialog(null, "      Gracias por participar :D ");
+        JOptionPane.showMessageDialog(null, "Gracias por utilizar nuestro programa :D ");
         this.dispose();
     }//GEN-LAST:event_salirbtnActionPerformed
 

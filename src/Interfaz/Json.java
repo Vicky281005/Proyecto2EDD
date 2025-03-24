@@ -303,11 +303,11 @@ public class Json {
             }
 
         } catch (FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "Error: No se pudo encontrar el archivo JSON.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: No se pudo encontrar el archivo JSON. 🤔", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (JsonSyntaxException e) {
-            JOptionPane.showMessageDialog(null, "Error: El archivo que se intenta cargar no cumple con el formato esperado.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: El archivo que se intenta cargar no cumple con el formato esperado. ❌", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (JsonIOException | HeadlessException e) {
-            JOptionPane.showMessageDialog(null, "Error: Ocurrió un problema al leer el archivo JSON.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Ocurrió un problema al leer el archivo JSON. 😶", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

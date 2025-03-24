@@ -132,7 +132,19 @@ public class buscarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_buscaHashActionPerformed
 
     private void buscaArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaArbolActionPerformed
-        // TODO add your handling code here:
+        String especieABuscar = this.buscaPlanta.getText();
+        this.jTextArea1.setText(" " );
+        //System.out.println(especieABuscar);
+        
+        ListaEnlazada preguntas= Json.busqueda(especieABuscar);
+        
+        Nodo auxiliarLista = preguntas.getpFirst();
+        while(auxiliarLista != null){
+        String dataComoTexto = String.valueOf(auxiliarLista.getData());
+         this.jTextArea1.setText(this.jTextArea1.getText() + dataComoTexto + ", " );
+         auxiliarLista= auxiliarLista.getpNext();
+
+        }
         
         try {
 

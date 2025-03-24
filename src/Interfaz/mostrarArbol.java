@@ -8,6 +8,8 @@ import EDD.Nodo;
 import EDD.NodoArbol;
 import Hashtable.ListaEnlazada;
 import MainClass.Pregunta;
+import java.awt.PopupMenu;
+import javax.swing.JFrame;
 import org.graphstream.graph.Node;
 import org.graphstream.ui.view.ViewerPipe;
 
@@ -106,10 +108,15 @@ public class mostrarArbol extends javax.swing.JFrame {
 //    graph.setAttribute("ui.layout.force.springConstant", 0.2); // Constante de resorte
 
 // --------------------------------------------------
+    
+
+
 
     // Crear un Viewer para mostrar el grafo
     System.setProperty("org.graphstream.ui", "swing");
-    graph.display();
+    // Obtén el Viewer directamente desde el grafo
+    graph.display().setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
+//    graph.display();
 }
     /**
      * This method is called from within the constructor to initialize the form.

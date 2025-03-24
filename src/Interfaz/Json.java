@@ -37,6 +37,8 @@ public class Json {
          
          int preguntasRealizadas = 0;
          
+         NodoArbol ultimoNodoArbolAux = new NodoArbol(); // Obtendra el valor de lo adivinado
+         
          Boolean haSidoadivinado = false;
           while (aux != null && !haSidoadivinado){
                String valorDelJson = String.valueOf(aux.getData());
@@ -108,6 +110,7 @@ public class Json {
 //                                         JOptionPane.showMessageDialog(null, "// " + preguntaClaveValor.getKey());
 //                                         JOptionPane.showMessageDialog(null, "evaluare " + auxNodoComparativo.getData() + " de " + especieClaveValor.getKey());
                                          if (!String.valueOf(preguntaClaveValor.getKey()).equalsIgnoreCase(String.valueOf(auxNodoComparativo.getData()))){
+                                              ultimoNodoArbolAux = auxNodoComparativo;
                                               auxNodoComparativo = auxNodoComparativo.getHijoIzq();
                                               ultimaPregunta = false;
                                          }
@@ -118,12 +121,12 @@ public class Json {
                                              contador++;
                                              
                                              if (Boolean.parseBoolean(preguntaClaveValor.getValue().toString())){
-                                                 
-//                                         JOptionPane.showMessageDialog(null, "Nos vamos pa la derecha");
+                                                  ultimoNodoArbolAux = auxNodoComparativo;
                                                  auxNodoComparativo = auxNodoComparativo.getHijoDer();
                                                  ultimaPregunta = true;
                                              }else{
 //                                         JOptionPane.showMessageDialog(null, "Nos vamos pa la izquierda");
+                                                  ultimoNodoArbolAux = auxNodoComparativo;
                                                  auxNodoComparativo = auxNodoComparativo.getHijoIzq();
                                                  ultimaPregunta = false;
                                              }
@@ -140,9 +143,13 @@ public class Json {
                               haSidoadivinado = (respuestaDeHaSidoadivinado == JOptionPane.YES_OPTION);
                               
                               if (haSidoadivinado) {
+                                  NodoArbol noditotemp = new NodoArbol(especieClaveValor.getKey());
+                                   ultimoNodoArbolAux.setHijoDer(noditotemp);
                                   JOptionPane.showMessageDialog(null, "Yei me alegra haberte ayudado ;D ");
                               }
                               if (!haSidoadivinado) {
+                                  NodoArbol noditotemp = new NodoArbol(especieClaveValor.getKey());
+                                   ultimoNodoArbolAux.setHijoDer(noditotemp);
                                   JOptionPane.showMessageDialog(null, "Lo siento. Intentaré hacerlo mejor la próxima vez");
                               }
                          }
@@ -169,9 +176,69 @@ public class Json {
                
            }
        }
+     
+     //..............................................
+     public static ListaEnlazada busqueda(String especieBuscada){
+           
+         arbolParaGrafo.volverRaizNula();
+         NodoArbol aux = new NodoArbol();
+           ListaEnlazada    preguntasDeLaEspecieABuscar = new ListaEnlazada();
+           
+           int largo = 0;
+           int counter = 0;
+           //System.out.println(listaEspecies);
+            for (JsonElement elemento : listaEspecies) {
+            JsonObject especie = elemento.getAsJsonObject();
+            if (especie.has(especieBuscada)) {
+                JsonArray caracteristicas = especie.getAsJsonArray(especieBuscada);
+                largo = caracteristicas.size();
+                for (JsonElement caracteristica : caracteristicas) {
+                    JsonObject objetoCaracteristica = caracteristica.getAsJsonObject();
+                    for (var entrada : objetoCaracteristica.entrySet()) {
+                        String clave = entrada.getKey();
+                        boolean valor = entrada.getValue().getAsBoolean();
+                        preguntasDeLaEspecieABuscar.addLast(clave);
+                        if (arbolParaGrafo.getRaiz() == null) {
+                            arbolParaGrafo.setRaiz(new NodoArbol(clave));
+                            aux = arbolParaGrafo.getRaiz();
+                        } else{
+                            if (valor) {
+                                aux.setHijoDer(new NodoArbol(clave));
+                                aux = aux.getHijoDer();
+                            } else{
+                                aux.setHijoIzq(new NodoArbol(clave));
+                                aux = aux.getHijoIzq();
+                            }
+                        }
+                        counter++;
+                        
+                        if (counter >= largo){
+                            if (valor) {
+                                aux.setHijoDer(new NodoArbol(especieBuscada));
+                            } else {
+                                aux.setHijoDer(new NodoArbol(especieBuscada));
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+         //System.out.println(listaEspecies);
+      
+     return preguntasDeLaEspecieABuscar;
+     }
+     //...............................................
+     
+     
+     
+     
     // Método encargado de cargar el JSON
     public static void cargarJson() {
         try {
+//            arbolParaGrafo.volverRaizNula();
+            
             arbolParaGrafo = new Arbol();
             JFileChooser carga = new JFileChooser();
             int captar = carga.showOpenDialog(null);

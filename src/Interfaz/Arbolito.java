@@ -134,10 +134,9 @@ public class Arbolito extends javax.swing.JFrame {
         try {
             Json.obtenerListaClaveValorJson(); // Intentar ejecutar el método
         } catch (Exception e) {
-            // Mostrar mensaje personalizado
             JOptionPane.showMessageDialog(
                     null,
-                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado.",
+                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado."+e,
                     "Advertencia",
                      JOptionPane.WARNING_MESSAGE
             );

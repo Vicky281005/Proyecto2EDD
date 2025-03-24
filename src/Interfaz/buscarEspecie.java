@@ -5,6 +5,7 @@ import EDD.Arbol;
 import EDD.Nodo;
 import Hashtable.ListaEnlazada;
 import Hashtable.TablaHash;
+import javax.swing.JOptionPane;
 
 //import Hashtable.Hashtable;
 
@@ -122,21 +123,8 @@ public class buscarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_buscaPlantaActionPerformed
 
     private void buscaHashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaHashActionPerformed
-       
-        try {
-
-            long startTime = System.nanoTime();
-//            String nombre = this.buscaPlanta.getText();
-//            Nodo n = hash.buscar(nombre);
-//            
-//            
-//            
-//            
-            long estimatedTime = System.nanoTime() - startTime;
-            t.setText(estimatedTime + "s");
-        } catch (Exception e) {
-
-        }
+       JOptionPane.showMessageDialog(null, "Lamentablemente aun seguimos trabajando en esta parte. Sugerimos recorrer por arbol :D ");
+     
     }//GEN-LAST:event_buscaHashActionPerformed
 
     
@@ -155,7 +143,7 @@ public class buscarEspecie extends javax.swing.JFrame {
        
         String especieABuscar = this.buscaPlanta.getText();
     this.t.setText(" ");
-
+try{
     long startTime = System.nanoTime();
 
     ListaEnlazada preguntas = Json.busqueda(especieABuscar);
@@ -170,6 +158,14 @@ public class buscarEspecie extends javax.swing.JFrame {
         String dataComoTexto = String.valueOf(auxiliarLista.getData());
         this.jTextArea1.setText(this.jTextArea1.getText() + dataComoTexto + ", ");
         auxiliarLista = auxiliarLista.getpNext();
+    }
+} catch (Exception e) {
+        JOptionPane.showMessageDialog(
+            null,
+            "No se ha cargado una clave dicotómica. Por favor, cárgala antes de buscar.",
+            "Advertencia",
+            JOptionPane.WARNING_MESSAGE
+        );
     }
 
     }//GEN-LAST:event_buscaArbolActionPerformed

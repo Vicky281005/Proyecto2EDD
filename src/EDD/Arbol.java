@@ -253,7 +253,7 @@ public class Arbol {
             caracteristicaTomada = caracteristicas.eliminarYTomarpFirst();
             contador++;
             if (this.raiz == null) {
-                    JOptionPane.showMessageDialog(null, "El arbol es muy grande para ser mostrado por completo de forma rapida. Determine especie para mostrar un sub arbol de recorrido");
+                    JOptionPane.showMessageDialog(null, "El arbol es muy grande para ser mostrado por completo de forma grafica y rapida. Determine especie para mostrar un sub arbol de recorrido");
                     caracteristicaTomada = null;
                     caracteristicas = null;
                     break;

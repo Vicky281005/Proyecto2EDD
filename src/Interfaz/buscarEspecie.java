@@ -43,6 +43,8 @@ public class buscarEspecie extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         bontonVolverEnBuscarEspecie = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,6 +106,12 @@ public class buscarEspecie extends javax.swing.JFrame {
         });
         jPanel1.add(bontonVolverEnBuscarEspecie, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, -1, -1));
 
+        jLabel2.setText("Si deseas ver graficamente el arbol de recorrido que se realizo para llegar a");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 410, 450, -1));
+
+        jLabel3.setText(" la especie  debe volver al inicio y presionar el botón de mostrar arbol.");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 430, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 470));
 
         pack();
@@ -132,36 +140,32 @@ public class buscarEspecie extends javax.swing.JFrame {
     }//GEN-LAST:event_buscaHashActionPerformed
 
     private void buscaArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaArbolActionPerformed
+       
         String especieABuscar = this.buscaPlanta.getText();
-        this.jTextArea1.setText(" " );
-        //System.out.println(especieABuscar);
-        
-        ListaEnlazada preguntas= Json.busqueda(especieABuscar);
-        
-        Nodo auxiliarLista = preguntas.getpFirst();
-        while(auxiliarLista != null){
+    this.t.setText(" ");
+
+    // Medir el tiempo antes de ejecutar la búsqueda
+    long startTime = System.nanoTime();
+
+    ListaEnlazada preguntas = Json.busqueda(especieABuscar);
+
+    // Medir el tiempo después de ejecutar la búsqueda
+    long endTime = System.nanoTime();
+
+    // Calcular el tiempo transcurrido en nanosegundos
+    long elapsedTime = (endTime - startTime);
+
+    // Mostrar el tiempo transcurrido
+    this.t.setText( elapsedTime + " Nanosegundos\n");
+
+    // Mostrar los resultados de la búsqueda
+    Nodo auxiliarLista = preguntas.getpFirst();
+    while (auxiliarLista != null) {
         String dataComoTexto = String.valueOf(auxiliarLista.getData());
-         this.jTextArea1.setText(this.jTextArea1.getText() + dataComoTexto + ", " );
-         auxiliarLista= auxiliarLista.getpNext();
+        this.jTextArea1.setText(this.jTextArea1.getText() + dataComoTexto + ", ");
+        auxiliarLista = auxiliarLista.getpNext();
+    }
 
-        }
-        
-        try {
-
-            long startTime = System.nanoTime();
-            String nombre = this.buscaPlanta.getText();
-            String resultado = this.arbol.posordenSearch(nombre);
-            this.jTextArea1.setText(resultado);
-//            Nodo n = hash.buscar(nombre);
-//            
-//            
-//            
-//            
-            long estimatedTime = System.nanoTime() - startTime;
-            t.setText(estimatedTime + "s");
-        } catch (Exception e) {
-
-        }
     }//GEN-LAST:event_buscaArbolActionPerformed
 
     private void bontonVolverEnBuscarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bontonVolverEnBuscarEspecieActionPerformed
@@ -213,6 +217,8 @@ public class buscarEspecie extends javax.swing.JFrame {
     private javax.swing.JTextField buscaPlanta;
     private javax.swing.JLabel buscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

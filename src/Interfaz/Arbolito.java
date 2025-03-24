@@ -117,48 +117,61 @@ public class Arbolito extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Muestra un mensaje de despedida al usuario y cierra la ventana actual.
+     *
+     * @param evt el evento de acción asociado al botón.
+     */
     private void salirbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbtnActionPerformed
         JOptionPane.showMessageDialog(null, "      Gracias por participar :D ");
         this.dispose();
     }//GEN-LAST:event_salirbtnActionPerformed
 
+    /**
+     * Invoca el método encargado de cargar el archivo JSON y procesar sus
+     * datos.
+     *
+     * @param evt el evento de acción asociado al botón.
+     */
     private void cargaClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargaClaveActionPerformed
-        Json.cargarJson();//        cargarClave carga = new cargarClave();
-        
-//        carga.setLocationRelativeTo(null);
-//        carga.setVisible(true);
-//        this.dispose();
+        Json.cargarJson();
+
     }//GEN-LAST:event_cargaClaveActionPerformed
 
+    /**
+     * Intenta obtener la lista de claves y valores del archivo JSON cargado. Si
+     * ocurre un error (por ejemplo, si el archivo no es válido o no se ha
+     * cargado), muestra un mensaje de advertencia al usuario.
+     *
+     * @param evt el evento de acción asociado al botón.
+     */
     private void determinarEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_determinarEspecieActionPerformed
         try {
             Json.obtenerListaClaveValorJson(); // Intentar ejecutar el método
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                     null,
-                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado."+e,
+                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado." + e,
                     "Advertencia",
-                     JOptionPane.WARNING_MESSAGE
+                    JOptionPane.WARNING_MESSAGE
             );
-            // Opcional: Para depuración, imprime la traza del error
-        
-    }
 
-
-
-//        determinarClave clave = new determinarClave(Json.arbolParaGrafo);
-//        clave.setLocationRelativeTo(null);
-//        clave.setVisible(true);
-//        this.dispose();
+        }
     }//GEN-LAST:event_determinarEspecieActionPerformed
 
     private void mostarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostarArbolActionPerformed
        Json.mostrarGrafico();
-        //mostrarArbol mostrar = new mostrarArbol(arbol);
-        //mostrar.setLocationRelativeTo(null);
-        //mostrar.setVisible(true);
-        //this.dispose();
+       
     }//GEN-LAST:event_mostarArbolActionPerformed
+
+    
+    /**
+     * Abre la ventana de búsqueda de especies, establece su posición en
+     * pantalla y cierra la ventana actual.
+     *
+     * @param evt el evento de acción asociado al botón.
+     */
 
     private void buscaEspecieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaEspecieActionPerformed
         buscarEspecie buscar = new buscarEspecie(Json.arbolParaGrafo);

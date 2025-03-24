@@ -29,6 +29,8 @@ public class Json {
      public static Arbol arbolParaGrafo; // Variable estática para compartir entre métodos
        
      public static void obtenerListaClaveValorJson(){
+         
+         
          Nodo aux = valoresDelJsonSinRepeticionCopia.getpFirst();
          NodoArbol raizParaArbol = new NodoArbol(aux.getData());
          arbolParaGrafo.volverRaizNula();
@@ -177,17 +179,24 @@ public class Json {
            }
        }
      
-     //..............................................
-     public static ListaEnlazada busqueda(String especieBuscada){
-           
-         arbolParaGrafo.volverRaizNula();
-         NodoArbol aux = new NodoArbol();
-           ListaEnlazada    preguntasDeLaEspecieABuscar = new ListaEnlazada();
-           
-           int largo = 0;
-           int counter = 0;
-           //System.out.println(listaEspecies);
-            for (JsonElement elemento : listaEspecies) {
+    /**
+     * Realiza la búsqueda de una especie específica en un árbol y genera su
+     * representación en una lista enlazada.
+     *
+     * @param especieBuscada el nombre de la especie a buscar.
+     * @return una lista enlazada que contiene las características de la especie
+     * buscada.
+     */
+    public static ListaEnlazada busqueda(String especieBuscada) {
+
+        arbolParaGrafo.volverRaizNula();
+        NodoArbol aux = new NodoArbol();
+        ListaEnlazada preguntasDeLaEspecieABuscar = new ListaEnlazada();
+
+        int largo = 0;
+        int counter = 0;
+        //System.out.println(listaEspecies);
+        for (JsonElement elemento : listaEspecies) {
             JsonObject especie = elemento.getAsJsonObject();
             if (especie.has(especieBuscada)) {
                 JsonArray caracteristicas = especie.getAsJsonArray(especieBuscada);
@@ -201,45 +210,56 @@ public class Json {
                         if (arbolParaGrafo.getRaiz() == null) {
                             arbolParaGrafo.setRaiz(new NodoArbol(clave));
                             aux = arbolParaGrafo.getRaiz();
-                        } else{
+                        } else {
                             if (valor) {
                                 aux.setHijoDer(new NodoArbol(clave));
                                 aux = aux.getHijoDer();
-                            } else{
+                            } else {
                                 aux.setHijoIzq(new NodoArbol(clave));
                                 aux = aux.getHijoIzq();
                             }
                         }
                         counter++;
-                        
-                        if (counter >= largo){
+
+                        if (counter >= largo) {
                             if (valor) {
                                 aux.setHijoDer(new NodoArbol(especieBuscada));
                             } else {
                                 aux.setHijoDer(new NodoArbol(especieBuscada));
-                                
+
                             }
                         }
                     }
                 }
             }
         }
-
-         //System.out.println(listaEspecies);
-      
-     return preguntasDeLaEspecieABuscar;
-     }
-     //...............................................
+        return preguntasDeLaEspecieABuscar;
+    }
+  
      
      
      
      
-    // Método encargado de cargar el JSON
+    /**
+     * Carga un archivo JSON y procesa su contenido para inicializar el árbol y
+     * listas relacionadas.
+     *
+     * Este método utiliza un selector de archivos para permitir al usuario
+     * cargar un archivo JSON. Extrae las características desde el archivo, las
+     * organiza en una lista enlazada y construye un árbol basado en dichas
+     * características.
+     *
+     * Además, maneja excepciones para proporcionar retroalimentación al usuario
+     * en caso de errores como un archivo faltante, un formato inválido o
+     * problemas al leer el archivo.
+     */
     public static void cargarJson() {
         try {
-//            arbolParaGrafo.volverRaizNula();
-            
+    
             arbolParaGrafo = new Arbol();
+
+            valoresDelJsonSinRepeticionCopia = new ListaEnlazada();
+            
             JFileChooser carga = new JFileChooser();
             int captar = carga.showOpenDialog(null);
 
@@ -264,14 +284,13 @@ public class Json {
                     for (var especieClaveValor : listaEspecieClaveValor) {
                         JsonArray listaPreguntas = especieClaveValor.getValue().getAsJsonArray();
                         clavesDelJson.addLast(especieClaveValor.getKey());
-//                        JOptionPane.showMessageDialog(null, especieClaveValor.getKey());
-//                        JOptionPane.showMessageDialog(null, listaPreguntas);
+
 
                         for (var preguntaObjeto : listaPreguntas) {
                             for (Entry<String, JsonElement> preguntaClaveValor : preguntaObjeto.getAsJsonObject().entrySet()) {
                                 valoresDelJsonSinRepeticion.addLastIfItsNotInList(preguntaClaveValor.getKey());
                                 valoresDelJsonSinRepeticionCopia.addLastIfItsNotInList(preguntaClaveValor.getKey());
-//                                JOptionPane.showMessageDialog(null, "A ver ya lo aniadi");
+
                             }
                         }
                     }
@@ -279,7 +298,6 @@ public class Json {
                 
 
                 arbolParaGrafo.insertarCaracteristicas(valoresDelJsonSinRepeticion, true);
-               // Json.obtenerListaClaveValorJson();
 
                 JOptionPane.showMessageDialog(null, "JSON cargado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }

@@ -73,7 +73,7 @@ public class Pila {
      * Obtiene el dato almacenado en el nodo inicial de la pila (la cabeza).
      *
      * @return el dato contenido en el nodo inicial (`pInicio`) de la pila.
-     */
+     */ 
     public Object leerCabeza(){
         return pInicio.getData();
     }

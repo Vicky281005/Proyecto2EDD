@@ -162,7 +162,7 @@ try{
 } catch (Exception e) {
         JOptionPane.showMessageDialog(
             null,
-            "No se ha cargado una clave dicotómica. Por favor, cárgala antes de buscar.",
+            "No se ha cargado una clave dicotómica. Por favor, cárgala antes de buscar. 😊",
             "Advertencia",
             JOptionPane.WARNING_MESSAGE
         );

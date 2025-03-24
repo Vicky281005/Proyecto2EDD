@@ -142,18 +142,18 @@ public class Json {
                          }
                        
                          if (contador == largo && ultimaPregunta == esVerdaderaLaRespuestaDelUsuario) {
-                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "La especie que buscas es esta? "+ especieClaveValor.getKey());
+                             int  respuestaDeHaSidoadivinado = JOptionPane.showConfirmDialog(null, "La especie que buscas es esta? 🤔 "+ especieClaveValor.getKey());
                               haSidoadivinado = (respuestaDeHaSidoadivinado == JOptionPane.YES_OPTION);
                               
                               if (haSidoadivinado) {
                                   NodoArbol noditotemp = new NodoArbol(especieClaveValor.getKey());
                                    ultimoNodoArbolAux.setHijoDer(noditotemp);
-                                  JOptionPane.showMessageDialog(null, "Yei me alegra haberte ayudado ;D ");
+                                  JOptionPane.showMessageDialog(null, "Yei !  me alegra haberte ayudado ;D ");
                               }
                               if (!haSidoadivinado) {
                                   NodoArbol noditotemp = new NodoArbol(especieClaveValor.getKey());
                                    ultimoNodoArbolAux.setHijoDer(noditotemp);
-                                  JOptionPane.showMessageDialog(null, "Lo siento. Intentaré hacerlo mejor la próxima vez");
+                                  JOptionPane.showMessageDialog(null, "Lo siento. Intentaré hacerlo mejor la próxima vez... :( ");
                               }
                          }
                      }

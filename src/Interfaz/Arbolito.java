@@ -3,6 +3,7 @@ package Interfaz;
 
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author jmmor
@@ -148,7 +149,7 @@ public class Arbolito extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(
                     null,
-                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado." + e,
+                    "No se ha cargado una clave dicotómica.¨ Por favor, verifica el archivo cargado. 🤔",
                     "Advertencia",
                     JOptionPane.WARNING_MESSAGE
             );

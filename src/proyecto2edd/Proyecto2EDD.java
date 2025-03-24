@@ -27,16 +27,16 @@ public class Proyecto2EDD {
      */
    public static void main(String[] args) throws FileNotFoundException {
     JOptionPane.showMessageDialog(null, """
-                                        BIENVENID@ A NUESTRO PROGRAMA!
+                                        BIENVENID@ A NUESTRO PROGRAMA! 😊💻
                                         
                                         Antes de iniciar, ten en cuenta:
                                         - Si deseas ver el árbol completo gráficamente,
-                                          debes cargar la clave dicot\u00f3mica. Luego, presiona el botón "Mostrar Arbol".
+                                          debes cargar la clave dicotómica. Luego, presiona el botón "Mostrar Arbol" . 😉
                                         - En la seccion de  "Buscar especie" al escribir la especie que deseas buscar, 
                                         debes iniciar el nombre  con letra Mayuscula sin dejar espacios al final. y Posteriormente 
-                                        presionar el boton de buscar
+                                        presionar el boton de buscar. 💻
                                         - Para mostrar grafico, buscar y/o determinar especie es necesario cargar una clave
-                                        dicotomica primero."""
+                                        dicotomica primero. 📈 """
                                         ,
         "Aviso",
         JOptionPane.INFORMATION_MESSAGE
